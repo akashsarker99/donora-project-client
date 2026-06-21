@@ -7,10 +7,10 @@ import { LuDroplets } from "react-icons/lu";
 const Navbar = () => {
   return (
     <nav className="sticky top-0 z-50 border-b border-gray-100 bg-white/90 backdrop-blur-md">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 lg:px-8">
+      <div className="mx-auto flex container items-center justify-between px-4 py-3 lg:px-8">
         
         <Link href="/" className="flex items-center gap-3">
-          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#C70000] shadow-md">
+          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#C70000] hover:bg-[#A60000] shadow-md">
             <LuDroplets className="text-2xl text-white" />
           </div>
 
@@ -56,14 +56,14 @@ const Navbar = () => {
             href="/login"
             className="hidden font-medium text-gray-700 transition hover:text-[#DC2626] md:block"
           >
-            Sign In
+            Login
           </Link>
 
           <Button
             as={Link}
             href="/register"
             radius="full"
-            className="bg-[#C70000] px-6 font-semibold text-white hover:bg-[#820202]"
+            className="bg-[#C70000] px-6 font-semibold text-white hover:bg-[#A60000]"
           >
             <LuDroplets></LuDroplets>
             Register
