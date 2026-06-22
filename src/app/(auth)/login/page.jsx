@@ -11,14 +11,28 @@ import {
   Description,
 } from "@heroui/react";
 import { LuHeartHandshake } from "react-icons/lu";
+import { authClient } from "@/lib/auth-client";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 const LoginPage = () => {
-
+  const router = useRouter()
   const handleLogin = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const user = Object.fromEntries(formData.entries());
-    console.log(user);
+      const { data, error } = await authClient.signIn.email({
+      email: user.email,
+      password: user.password,
+    });
+
+    if (data) {
+            toast.success("Login Successful");
+            router.push("/")
+    }
+        if (error) {
+            toast.error(error.message);
+          }
   };
 
   return (

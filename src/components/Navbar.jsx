@@ -3,8 +3,13 @@
 import Link from "next/link";
 import { Button } from "@heroui/react";
 import { LuDroplets } from "react-icons/lu";
+import { authClient } from "@/lib/auth-client";
+import UserDropdown from "./UserDropdown";
 
 const Navbar = () => {
+    const {data: session} = authClient.useSession()
+  const user = session?.user;
+  console.log(user)
   return (
     <nav className="sticky top-0 z-50 border-b border-gray-100 bg-white/90 backdrop-blur-md">
       <div className="mx-auto flex container items-center justify-between px-4 py-3 lg:px-8">
@@ -50,7 +55,11 @@ const Navbar = () => {
           </Link>
         </div>
 
-        <div className="flex items-center gap-4">
+       <div>
+        {
+          user ? (<UserDropdown></UserDropdown>) : 
+          (
+             <div className="flex items-center gap-4">
           <Link
             href="/login"
             className="hidden font-medium text-gray-700 transition hover:text-[#DC2626] md:block"
@@ -66,6 +75,9 @@ const Navbar = () => {
             Register
           </Button></Link>
         </div>
+          )
+        }
+       </div>
       </div>
     </nav>
   );

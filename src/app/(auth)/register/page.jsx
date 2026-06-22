@@ -5,15 +5,24 @@ import {Form, Input, Button, FieldError, Description, TextField, Label} from "@h
 import { LuCircleCheckBig, LuDroplets } from "react-icons/lu";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
+import { imageUpload } from "@/lib/imgUpload";
+import { FaUser } from "react-icons/fa6";
 
 const bloodGroups = ["A+","A-","B+","B-","AB+","AB-","O+","O-"];
 
 const RegisterPage = () => {
+  const router = useRouter();
 const [districts, setDistricts] = useState([]);
 const [upazilas, setUpazilas] = useState([]);
 
 const [selectedDistrict, setSelectedDistrict] = useState("");
 const [filteredUpazilas, setFilteredUpazilas] = useState([]);
+
+
+const [preview, setPreview] = useState(null);
+const [imageFile, setImageFile] = useState(null);
 
 useEffect(() => {
   const loadData = async () => {
@@ -45,11 +54,58 @@ const handleRegister = async (e) => {
   e.preventDefault();
   const formData = new FormData(e.currentTarget);
   const user = Object.fromEntries(formData.entries());
+
+  if (!imageFile) {
+  toast.error("Please select a profile photo");
+  return;
+}
+
   if (user.password !== user.confirmPassword) {
   toast.error("Passwords do not match");
   return;
 }
+
+  try {
+    const image = await imageUpload(imageFile);
+
+    const userInfo = {
+      name: user.name,
+      email: user.email,
+      image: image,
+      bloodGroup: user.bloodGroup,
+      district: user.district,
+      upazila: user.upazila,
+      role: "Donor",
+      status: "active",
+      createdAt: new Date(),
+    };
+    const {data, error} = await authClient.signUp.email({
+      ...userInfo,
+      password: user.password,
+    })
+
+    if(data){
+      toast.success('Registration Successful');
+      router.push('/login')
+    }
+    if(error){
+      toast.error(`${error.message}`)
+    }
+  } catch (error) {
+    toast.error(error.message || "Image upload failed");
+  }
 }
+
+const handleImageChange = (e) => {
+  const file = e.target.files[0];
+
+  if (!file) return;
+
+  setImageFile(file);
+  setPreview(URL.createObjectURL(file));
+};
+
+
     return (
     <div className="grid lg:grid-cols-[40%_60%] gap-6">
       <div className="hidden lg:flex flex-col justify-center items-center bg-[#130505] text-white px-12 relative overflow-hidden ">
@@ -84,22 +140,59 @@ const handleRegister = async (e) => {
 
      <div className="flex items-center px-8 lg:px-12 py-12 bg-white">
         <div>
-          <h1
+        <div className="flex flex-col sm:flex-row items-center justify-between">
+           <div>
+           <h1
             className="text-5xl font-bold text-[#130505]"
             style={{ fontFamily: "var(--font-playfair)" }}
           >
             Create Account
           </h1>
 
-          <p className="mt-2 text-gray-500">
+          <p className="mt-2 text-gray-500 text-center sm:text-left">
             Already have an account?
             <Link
               href="/login"
               className="ml-2 font-semibold text-[#DC2626]"
             >
-              Sign in
+              Login
             </Link>
           </p>
+         </div>
+         <div className="my-4 sm:mr-10">
+  <div className="relative">
+    <div className="h-24 w-24 overflow-hidden rounded-full border-4 border-[#DC2626]/20 bg-gray-100">
+      {preview ? (
+        <img
+          src={preview}
+          alt="Profile Preview"
+          className="h-full w-full object-cover"
+        />
+      ) : (
+        <div className="flex h-full w-full items-center justify-center bg-[#F5F5F5]">
+          <FaUser className="text-4xl text-[#DC2626]" />
+        </div>
+      )}
+    </div>
+
+    <label
+      htmlFor="profile-photo"
+      className="absolute -bottom-1 -right-1 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-[#DC2626] text-white shadow-md"
+    >
+      +
+    </label>
+
+    <input
+      id="profile-photo"
+      type="file"
+      accept="image/*"
+      onChange={handleImageChange}
+      className="hidden"
+    />
+  </div>
+</div>
+        </div>
+          
 <Form className="mt-8 space-y-5" onSubmit={handleRegister}>
   <TextField isRequired name="name">
     <Label>Full Name</Label>
@@ -129,17 +222,6 @@ const handleRegister = async (e) => {
     <Input
       className="w-full rounded-xl"
       placeholder="Enter your email address"
-    />
-
-    <FieldError />
-  </TextField>
-
-  <TextField isRequired name="image">
-    <Label>Avatar URL</Label>
-
-    <Input
-      className="w-full rounded-xl"
-      placeholder="https://i.ibb.co/..."
     />
 
     <FieldError />

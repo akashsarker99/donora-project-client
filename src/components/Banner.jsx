@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { FaDroplet, FaMagnifyingGlass } from "react-icons/fa6";
 import { MdBloodtype } from "react-icons/md";
 
@@ -30,11 +31,13 @@ const Banner = () =>{
             </p>
 
             <div className="mt-10 flex flex-wrap gap-5 justify-center sm:justify-start">
-              <button className="flex items-center gap-3 rounded-2xl bg-white px-8 py-4 font-semibold text-[#DC2626] transition-all ease-in-out duration-300 hover:scale-105">
+               <Link href={'/register'}>
+                 <button className="flex items-center gap-3 rounded-2xl bg-white px-8 py-4 font-semibold text-[#DC2626] transition-all ease-in-out duration-300 hover:scale-105">
                 <FaDroplet />
                 Join as a Donor
               </button>
 
+               </Link>
               <button className="flex items-center gap-3 rounded-2xl border border-white/30 px-8 py-4 font-semibold text-white backdrop-blur transition hover:bg-[#A60000] hover:text-white hover:border-[#A60000]">
                 <FaMagnifyingGlass />
                 Search Donors
