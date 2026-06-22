@@ -5,7 +5,7 @@ const Banner = () =>{
   return (
     <section className="relative overflow-hidden">
 
-     <div className="relative bg-cover bg-center bg-no-repeat"
+     <div className="relative bg-cover sm:bg-center bg-no-repeat "
       style={{backgroundImage: "url('/hero.png')"}}>
 
          <div className="relative mx-auto max-w-7xl px-6 py-24 lg:py-32">

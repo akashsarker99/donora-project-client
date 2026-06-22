@@ -15,8 +15,7 @@ const Navbar = () => {
           </div>
 
           <h1
-            className="text-xl font-bold md:text-2xl"
-            style={{ fontFamily: "var(--font-playfair)" }}>
+            className="text-xl font-bold md:text-2xl font-logo">
             Donora
           </h1>
         </Link>
@@ -59,15 +58,13 @@ const Navbar = () => {
             Login
           </Link>
 
-          <Button
-            as={Link}
-            href="/register"
+         <Link  href="/register"> <Button
             radius="full"
             className="bg-[#C70000] px-6 font-semibold text-white hover:bg-[#A60000]"
           >
             <LuDroplets></LuDroplets>
             Register
-          </Button>
+          </Button></Link>
         </div>
       </div>
     </nav>

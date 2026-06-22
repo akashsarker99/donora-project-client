@@ -4,3 +4,12 @@
 .font-logo {
   font-family: var(--font-playfair);
 }
+input:focus {
+  outline: none !important;
+  border-color: #DC2626 !important;
+  box-shadow: 0 0 0 2px #DC2626 !important;
+
+}
+input{
+  height:  50px;
+}

@@ -31,7 +31,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="mb-8 text-3xl font-semibold">Quick Links</h3>
+            <h3 className="mb-8 text-2xl font-semibold">Quick Links</h3>
 
             <div className="flex flex-col gap-5 text-lg text-gray-300">
               <Link href="/" className="hover:text-[#DC2626]">
@@ -56,7 +56,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="mb-8 text-3xl font-semibold">Blood Groups</h3>
+            <h3 className="mb-8 text-2xl font-semibold">Blood Groups</h3>
 
             <div className="mb-8 grid grid-cols-4 gap-3">
               {[
@@ -85,7 +85,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="mb-8 text-3xl font-semibold">Contact Us</h3>
+            <h3 className="mb-8 text-2xl font-semibold">Contact Us</h3>
 
             <div>
                 <div className="space-y-6 text-gray-300">
