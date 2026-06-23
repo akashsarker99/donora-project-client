@@ -14,6 +14,12 @@ const UserDropdown = () => {
 
   if (!user) return null;
 
+  const dashboardLinks = {
+    donor: '/dashboard/donor',
+    volunteer: '/dashboard/volunteer',
+    admin: '/dashboard/admin',
+  }
+
   return (
     <div className="relative">
       <button
@@ -69,7 +75,7 @@ const UserDropdown = () => {
 
           <div className="border-t border-gray-200 pt-1.5">
             <Link
-              href="/dashboard"
+              href= {`${dashboardLinks[user?.role || "seeker"]}`}
               className="flex items-center gap-3 px-4 py-3 text-slate-600 transition-all duration-200 hover:bg-red-50 hover:text-[#C70000] rounded-2xl"
             >
               <LuLayoutDashboard className="text-lg" />

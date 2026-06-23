@@ -30,7 +30,7 @@ const DashboardSidebar = () => {
     {
       icon: LuPlus,
       label: "Create Request",
-      href: "/dashboard/create-request",
+      href: "/dashboard/donor/create-request",
     },
   ];
 
@@ -114,7 +114,7 @@ const sidebarContent = (
 
 return (
   <>
-    <aside className="hidden w-80 shrink-0 lg:block">
+   <aside className="sticky top-0 hidden h-screen w-80 shrink-0 lg:block">
       {sidebarContent}
     </aside>
 <div className="lg:hidden">
@@ -133,10 +133,7 @@ return (
       >
         <Drawer.Dialog className="m-0 h-screen rounded-none bg-[#5B0000] p-0">
           <Drawer.CloseTrigger />
-
-          <Drawer.Body className="p-0">
             {sidebarContent}
-          </Drawer.Body>
         </Drawer.Dialog>
       </Drawer.Content>
     </Drawer.Backdrop>
