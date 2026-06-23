@@ -1,3 +1,4 @@
+import { createPayment } from '@/lib/actions/payment'
 import { stripe } from '@/lib/stripe'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
@@ -10,6 +11,8 @@ export default async function Success({ searchParams }) {
 
   const {
     status,
+   customer_details: { email: customerEmail },
+    metadata
   } = await stripe.checkout.sessions.retrieve(session_id, {
     expand: ['line_items', 'payment_intent']
   })
@@ -19,6 +22,16 @@ export default async function Success({ searchParams }) {
   }
 
 if (status === "complete") {
+    const paymentInfo = {
+           userid: metadata.user_id,
+           name: metadata.user_name,
+           email: customerEmail,
+           amount: metadata.funding,
+           photo: metadata.user_photo,
+        }
+
+    const result = await createPayment(paymentInfo);
+    console.log(result)
   return (
     <div className="flex min-h-screen items-center justify-center bg-black/40 p-4">
       <div className="w-full max-w-2xl overflow-hidden rounded-[32px] bg-white shadow-2xl">

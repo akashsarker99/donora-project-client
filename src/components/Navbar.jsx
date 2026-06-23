@@ -9,7 +9,6 @@ import UserDropdown from "./UserDropdown";
 const Navbar = () => {
     const {data: session} = authClient.useSession()
   const user = session?.user;
-  console.log(user)
   return (
     <nav className="sticky top-0 z-50 border-b border-gray-100 bg-white/90 backdrop-blur-md">
       <div className="mx-auto flex container items-center justify-between px-4 py-3 lg:px-8">
