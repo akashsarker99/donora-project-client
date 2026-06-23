@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 import FundingStats from '@/components/funding/FundingStats';

@@ -24,7 +24,7 @@ const FundModal = async () => {
         </Modal.Header>
 
         <Modal.Body className="px-8 py-8">
-          <form className="space-y-6">
+          <form action={'/api/payment'} method="POST" className="space-y-6">
             <TextField
               name="name"
               defaultValue={user?.name}
@@ -60,6 +60,7 @@ const FundModal = async () => {
               <Label>Amount (BDT)</Label>
 
               <Input
+                 name="funding"
                 type="number"
                 placeholder="500"
                 className="w-full rounded-2xl"
