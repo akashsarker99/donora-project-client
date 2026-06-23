@@ -9,7 +9,7 @@ const FundingBanner = () => {
       Support Us
     </div>
 
-    <h1 className="font-logo text-4xl md:text-5xl">
+    <h1 className="font-logo text-3xl md:text-4xl">
       Blood Donation Fund
     </h1>
 

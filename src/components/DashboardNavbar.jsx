@@ -9,7 +9,7 @@ const DashboardNavbar = () => {
 
   return (
     <header className="flex h-20 items-center justify-between border-b border-gray-100 bg-white px-6">
-      <h1 className="text-3xl font-bold text-[#130505]">
+      <h1 className="text-xl font-bold text-[#130505]">
         Dashboard
       </h1>
 

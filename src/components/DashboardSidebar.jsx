@@ -15,7 +15,7 @@ const DashboardSidebar = () => {
     {
       icon: LuLayoutDashboard,
       label: "Dashboard",
-      href: "/dashboard",
+      href: `/dashboard/donor`,
     },
     {
       icon: FaUser,
@@ -48,7 +48,7 @@ const sidebarContent = (
           <LuDroplets className="text-xl text-white" />
         </div>
 
-        <h2 className="font-logo text-3xl font-bold text-white">
+        <h2 className="font-logo text-2xl font-bold text-white">
           Donora
         </h2>
       </Link>

@@ -1,7 +1,10 @@
 'use client'
 
-import { Button } from "@heroui/react";
-import { LuPlus } from "react-icons/lu";
+import { createDonationRequest } from "@/lib/actions/donationRequest";
+import { Button, TextField, Input, TextArea, Label, FieldError, Form } from "@heroui/react";
+import { useRouter } from "next/navigation";
+import { LuCalendar, LuDroplets, LuEye, LuMapPin, LuPlus } from "react-icons/lu";
+import { toast } from "react-toastify";
 
 const bloodGroups = [
   "A+",
@@ -21,206 +24,73 @@ const CreateRequestForm = ({
   selectedDistrict = "",
   handleDistrictChange,
 }) => {
+  const router = useRouter();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const data = Object.fromEntries(formData.entries());
+    const districtName =
+      districts.find((district) => district.id === data.district)?.name ||
+      data.district;
+
+    const request = {
+      ...data,
+      district: districtName,
+      requestMessage: data.message,
+      requestStatus: "pending",
+    };
+    
+    await createDonationRequest(request);
+    toast.success("Request Created Successfully");
+    router.push("/donation-requests");
+  };
+
   return (
-    <div className="rounded-3xl bg-white shadow-sm lg:w-200 ">
-      <div className="border-b border-gray-100 px-6 py-5">
-        <h2 className="font-logo text-3xl font-bold text-[#130505]">
-          Create Donation Request
-        </h2>
+   <div className="overflow-hidden rounded-[28px] border border-gray-100 bg-white shadow-lg">
+      <div className="h-1.5 bg-[#ff2b5b]" />
+
+      <div className="p-8">
+        <div className="mb-8 flex items-center justify-between">
+          <div className="flex items-center gap-2 rounded-full border border-red-200 bg-red-50 px-4 py-2 text-base font-semibold text-[#C70000]">
+            <LuDroplets size={16} />
+            {request.bloodGroup}
+          </div>
+
+          <div className="rounded-full border border-yellow-300 bg-yellow-50 px-5 py-2 text-base font-medium text-yellow-700">
+            Pending
+          </div>
+        </div>
+
+        <h3 className="mb-4 text-2xl font-bold text-[#0F172A]">
+          {request.recipientName}
+        </h3>
+
+        <div className="space-y-3">
+          <div className="flex items-center gap-3 text-gray-500">
+            <LuMapPin size={18} />
+            <span className="text-lg">
+              {request.district}, {request.upazila}
+            </span>
+          </div>
+
+          <div className="flex items-center gap-3 text-gray-500">
+            <LuCalendar size={18} />
+            <span className="text-lg">
+              {request.donationDate} at {request.donationTime}
+            </span>
+          </div>
+        </div>
+
+        <p className="mt-6 text-lg leading-9 text-gray-500">
+          {request.message}
+        </p>
+
+        <button className="mt-8 flex h-14 w-full items-center justify-center gap-3 rounded-full bg-red-50 text-xl font-semibold text-[#DC2626] transition hover:bg-red-100">
+          <LuEye size={20} />
+          View Details
+        </button>
       </div>
-
-      <form className="space-y-6 p-6">
-        <div className="grid gap-5 md:grid-cols-2">
-          <div>
-            <label className="mb-2 block font-medium">
-              Requester Name
-            </label>
-
-            <input
-              type="text"
-              value={user?.name || ""}
-              readOnly
-              className="w-full rounded-2xl border border-gray-200 px-4 py-3 outline-none"
-            />
-          </div>
-
-          <div>
-            <label className="mb-2 block font-medium">
-              Requester Email
-            </label>
-
-            <input
-              type="email"
-              value={user?.email || ""}
-              readOnly
-              className="w-full rounded-2xl border border-gray-200 px-4 py-3 outline-none"
-            />
-          </div>
-        </div>
-
-        <div>
-          <label className="mb-2 block font-medium">
-            Recipient Name
-          </label>
-
-          <input
-            type="text"
-            name="recipientName"
-            required
-            placeholder="Patient's full name"
-            className="w-full rounded-2xl border border-gray-200 px-4 py-3 outline-none focus:border-[#DC2626]"
-          />
-        </div>
-
-        <div className="grid gap-5 md:grid-cols-2">
-          <div>
-            <label className="mb-2 block font-medium">
-              Recipient District
-            </label>
-
-            <select
-              value={selectedDistrict}
-              onChange={handleDistrictChange}
-              name="district"
-              required
-              className="w-full rounded-2xl border border-gray-200 px-4 py-3 outline-none"
-            >
-              <option value="">Select...</option>
-
-              {districts.map((district) => (
-                <option
-                  key={district.id}
-                  value={district.id}
-                >
-                  {district.name}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div>
-            <label className="mb-2 block font-medium">
-              Recipient Upazila
-            </label>
-
-            <select
-              name="upazila"
-              required
-              disabled={!selectedDistrict}
-              className="w-full rounded-2xl border border-gray-200 px-4 py-3 outline-none"
-            >
-              <option value="">Select...</option>
-
-              {upazilas.map((upazila) => (
-                <option
-                  key={upazila.id}
-                  value={upazila.name}
-                >
-                  {upazila.name}
-                </option>
-              ))}
-            </select>
-          </div>
-        </div>
-
-        <div>
-          <label className="mb-2 block font-medium">
-            Hospital Name
-          </label>
-
-          <input
-            type="text"
-            name="hospital"
-            required
-            placeholder="e.g. Dhaka Medical College Hospital"
-            className="w-full rounded-2xl border border-gray-200 px-4 py-3 outline-none focus:border-[#DC2626]"
-          />
-        </div>
-
-        <div>
-          <label className="mb-2 block font-medium">
-            Full Address
-          </label>
-
-          <input
-            type="text"
-            name="address"
-            required
-            placeholder="e.g. Zahir Raihan Rd, Dhaka 1000"
-            className="w-full rounded-2xl border border-gray-200 px-4 py-3 outline-none focus:border-[#DC2626]"
-          />
-        </div>
-
-        <div>
-          <label className="mb-2 block font-medium">
-            Blood Group Required
-          </label>
-
-          <select
-            name="bloodGroup"
-            required
-            className="w-full rounded-2xl border border-gray-200 px-4 py-3 outline-none"
-          >
-            <option value="">Select...</option>
-
-            {bloodGroups.map((group) => (
-              <option key={group} value={group}>
-                {group}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div className="grid gap-5 md:grid-cols-2">
-          <div>
-            <label className="mb-2 block font-medium">
-              Donation Date
-            </label>
-
-            <input
-              type="date"
-              name="donationDate"
-              required
-              className="w-full rounded-2xl border border-gray-200 px-4 py-3 outline-none"
-            />
-          </div>
-
-          <div>
-            <label className="mb-2 block font-medium">
-              Donation Time
-            </label>
-
-            <input
-              type="time"
-              name="donationTime"
-              required
-              className="w-full rounded-2xl border border-gray-200 px-4 py-3 outline-none"
-            />
-          </div>
-        </div>
-
-        <div>
-          <label className="mb-2 block font-medium">
-            Request Message
-          </label>
-
-          <textarea
-            rows={5}
-            name="message"
-            required
-            placeholder="Explain why blood is needed and any additional details..."
-            className="w-full resize-none rounded-2xl border border-gray-200 px-4 py-3 outline-none focus:border-[#DC2626]"
-          />
-        </div>
-
-        <Button
-          type="submit"
-          className="h-12 w-full bg-[#DC2626] text-base font-semibold text-white hover:bg-[#B91C1C]"
-        >
-          <LuPlus size={18} />
-          Submit Request
-        </Button>
-      </form>
     </div>
   );
 };

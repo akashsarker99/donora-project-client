@@ -11,7 +11,7 @@ const DonorDashboard = async ({ requests = [] }) => {
           Welcome back,
         </p>
 
-        <h2 className="font-logo mt-2 text-4xl md:text-5xl font-bold">
+        <h2 className="font-logo mt-2 text-3xl md:text-4xl font-bold">
           {user?.name}!
         </h2>
 
@@ -36,7 +36,7 @@ const DonorDashboard = async ({ requests = [] }) => {
           </p>
 
           <Link
-            href="/dashboard/create-request"
+            href="/dashboard/donor/create-request"
             className="mt-6 flex items-center gap-2 rounded-2xl bg-[#C70000] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#A60000]"
           >
             <LuPlus size={18} />

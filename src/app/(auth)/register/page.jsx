@@ -9,6 +9,7 @@ import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { imageUpload } from "@/lib/imgUpload";
 import { FaUser } from "react-icons/fa6";
+import Image from "next/image";
 
 const bloodGroups = ["A+","A-","B+","B-","AB+","AB-","O+","O-"];
 
@@ -163,7 +164,7 @@ const handleImageChange = (e) => {
   <div className="relative">
     <div className="h-24 w-24 overflow-hidden rounded-full border-4 border-[#DC2626]/20 bg-gray-100">
       {preview ? (
-        <img
+        <Image
           src={preview}
           alt="Profile Preview"
           className="h-full w-full object-cover"
