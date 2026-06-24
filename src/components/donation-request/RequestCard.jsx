@@ -57,8 +57,7 @@ export default function RequestCard({request}) {
         <p className="line-clamp-2 text-sm leading-6 text-gray-600">
   {request.message}
 </p>
-
-       <Link href={`/dashboard/donor-request/${request._id}`}> <Button className="mt-4 flex w-full  items-center justify-center gap-2 rounded-full bg-red-50 py-3 font-medium text-[#C70000] transition hover:bg-red-100">
+       <Link href={`/donation-requests/${request._id}`}> <Button className="mt-4 flex w-full  items-center justify-center gap-2 rounded-full bg-red-50 py-3 font-medium text-[#C70000] transition hover:bg-red-100">
           <LuEye size={18} />
           View Details
         </Button></Link>

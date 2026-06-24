@@ -6,8 +6,11 @@ import { FaUser } from "react-icons/fa6";
 import { authClient } from "@/lib/auth-client";
 import { Button, Drawer } from "@heroui/react";
 import { LayoutSideContentLeft } from "@gravity-ui/icons";
+import { handleLogout } from "@/lib/core/logout";
+import { useRouter } from "next/navigation";
 
 const DashboardSidebar = () => {
+  const router = useRouter();
  const {data: session} = authClient.useSession()
   const user = session?.user;
 
@@ -104,7 +107,7 @@ const sidebarContent = (
         </div>
       </Link>
 
-      <button className="flex w-full items-center gap-3 rounded-xl px-3 py-2 text-base text-[#FF7A7A] transition-all duration-200 hover:bg-[#730000] hover:text-white">
+      <button onClick={()=>handleLogout(router)} className="flex w-full items-center gap-3 rounded-xl px-3 py-2 text-base text-[#FF7A7A] transition-all duration-200 hover:bg-[#730000] hover:text-white">
         <LuLogOut size={18} />
         Sign Out
       </button>

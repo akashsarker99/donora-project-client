@@ -5,15 +5,18 @@ import Link from "next/link";
 import Image from "next/image";
 import { LuChevronDown, LuLayoutDashboard, LuLogOut } from "react-icons/lu";
 import { authClient } from "@/lib/auth-client";
+import { handleLogout } from "@/lib/core/logout";
+import { useRouter } from "next/navigation";
+
 
 const UserDropdown = () => {
+  const router = useRouter();
   const [open, setOpen] = useState(false);
 
   const { data: session } = authClient.useSession();
   const user = session?.user;
-
   if (!user) return null;
-
+  
   const dashboardLinks = {
     donor: '/dashboard/donor',
     volunteer: '/dashboard/volunteer',
@@ -82,7 +85,7 @@ const UserDropdown = () => {
               Dashboard
             </Link>
 
-            <button
+            <button onClick={()=>handleLogout(router)}
               className="flex w-full items-center gap-3 px-4 py-3 text-left text-[#DC2626] transition-all duration-200 hover:bg-red-50 hover:pl-5 rounded-2xl"
             >
               <LuLogOut className="text-lg" />

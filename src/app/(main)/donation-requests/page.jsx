@@ -1,6 +1,7 @@
 import RequestBanner from '@/components/donation-request/RequestBanner';
 import RequestCard from '@/components/donation-request/RequestCard';
 import { getDonationRequests } from '@/lib/api/donationRequest';
+import { getUserSession } from '@/lib/core/session';
 import Link from 'next/link';
 import React from 'react';
 import { LuDroplets, LuPlus } from 'react-icons/lu';
@@ -8,6 +9,7 @@ import { LuDroplets, LuPlus } from 'react-icons/lu';
 
 
 const DonationRequestPage = async () => {
+  const user = await getUserSession();
   const requests = await getDonationRequests();
     return (
         <div className="space-y-6 p-4 md:p-6">
@@ -35,7 +37,7 @@ const DonationRequestPage = async () => {
         </p>
 
         <Link
-          href="/dashboard/donor/create-request"
+          href={`/dashboard/${user?.role}/create-request`}
           className="mt-8 inline-flex items-center gap-2 rounded-xl bg-[#DC2626] px-6 py-3 font-semibold text-white transition hover:bg-[#B91C1C]"
         >
           <LuPlus size={18} />

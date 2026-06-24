@@ -7,3 +7,4 @@ export const getUserSession = async() =>{
     })
     return session?.user || null;
 }
+
