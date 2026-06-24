@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import { imageUpload } from "@/lib/imgUpload";
 import { FaUser } from "react-icons/fa6";
 import Image from "next/image";
+import { createUser } from "@/lib/actions/user";
 
 const bloodGroups = ["A+","A-","B+","B-","AB+","AB-","O+","O-"];
 
@@ -55,7 +56,9 @@ const handleRegister = async (e) => {
   e.preventDefault();
   const formData = new FormData(e.currentTarget);
   const user = Object.fromEntries(formData.entries());
-
+const districtName = districts.find(
+  (district) => district.id === user.district
+)?.name;
   if (!imageFile) {
   toast.error("Please select a profile photo");
   return;
@@ -74,18 +77,21 @@ const handleRegister = async (e) => {
       email: user.email,
       image: image,
       bloodGroup: user.bloodGroup,
-      district: user.district,
+      district: districtName,
       upazila: user.upazila,
       role: "Donor",
       status: "active",
       createdAt: new Date(),
     };
     const {data, error} = await authClient.signUp.email({
-      ...userInfo,
-      password: user.password,
+      name: user.name,
+       email: user.email,
+        image,
+        password: user.password,
     })
 
     if(data){
+      await createUser(userInfo);
       toast.success('Registration Successful');
       router.push('/login')
     }
@@ -165,6 +171,8 @@ const handleImageChange = (e) => {
     <div className="h-24 w-24 overflow-hidden rounded-full border-4 border-[#DC2626]/20 bg-gray-100">
       {preview ? (
         <Image
+        height={120}
+        width={120}
           src={preview}
           alt="Profile Preview"
           className="h-full w-full object-cover"

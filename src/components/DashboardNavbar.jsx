@@ -6,7 +6,6 @@ import Image from "next/image";
 const DashboardNavbar = () => {
   const { data: session } = authClient.useSession();
   const user = session?.user;
-
   return (
     <header className="flex h-20 items-center justify-between border-b border-gray-100 bg-white px-6">
       <h1 className="text-xl font-bold text-[#130505]">
@@ -21,9 +20,10 @@ const DashboardNavbar = () => {
         {user?.image ? (
           <div className="relative h-12 w-12 overflow-hidden rounded-full">
             <Image
-              src={user.image}
-              alt={user.name}
-              fill
+              src={user?.image}
+              alt={user?.name}
+              height={44}
+              width={44}
               className="object-cover"
             />
           </div>
