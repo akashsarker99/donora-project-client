@@ -8,7 +8,7 @@ import { IoLogoInstagram } from "react-icons/io5";
 const Footer = () => {
     return (
         <footer className="bg-[#130505] text-white">
-      <div className="container mx-auto px-6 py-10">
+      <div className="container mx-auto px-6 py-8">
         <div className="grid gap-10 sm:space-x-15 md:grid-cols-2 lg:grid-cols-4 ">
           <div>
             <div className="mb-6 flex items-center gap-3">
@@ -17,13 +17,13 @@ const Footer = () => {
                        </div>
              
                        <h1
-                         className="text-3xl font-bold md:text-4xl"
+                         className="text-2xl font-bold md:text-3xl"
                          style={{ fontFamily: "var(--font-playfair)" }}>
                          Donora
                        </h1>
             </div>
 
-            <p className="mb-8 text-lg leading-9 text-gray-300">
+            <p className="mb-8 leading-7 text-gray-300">
               Connecting blood donors with those in need across Bangladesh.
               Every drop counts, every life matters.
             </p>
@@ -31,9 +31,9 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="mb-8 text-2xl font-semibold">Quick Links</h3>
+            <h3 className="mb-6 text-xl font-semibold">Quick Links</h3>
 
-            <div className="flex flex-col gap-5 text-lg text-gray-300">
+            <div className="flex flex-col gap-2 text-lg text-gray-300">
               <Link href="/" className="hover:text-[#DC2626]">
                 Home
               </Link>
@@ -56,9 +56,9 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="mb-8 text-2xl font-semibold">Blood Groups</h3>
+            <h3 className="mb-6 text-xl font-semibold">Blood Groups</h3>
 
-            <div className="mb-8 grid grid-cols-4 gap-3">
+            <div className="mb-6 grid grid-cols-4 gap-3">
               {[
                 "A+",
                 "A-",
@@ -71,24 +71,24 @@ const Footer = () => {
               ].map((group) => (
                 <div
                   key={group}
-                  className="rounded-lg bg-[#2A0A0A] py-3 text-center font-semibold text-[#DC2626]"
+                  className="rounded-lg bg-[#2A0A0A] py-1 text-center font-semibold text-[#DC2626]"
                 >
                   {group}
                 </div>
               ))}
             </div>
 
-            <p className="leading-8 text-gray-300">
+            <p className="leading-7 text-gray-300">
               We connect donors of all blood types with patients in need across
               every district of Bangladesh.
             </p>
           </div>
 
           <div>
-            <h3 className="mb-8 text-2xl font-semibold">Contact Us</h3>
+            <h3 className="mb-6 text-xl font-semibold">Contact Us</h3>
 
             <div>
-                <div className="space-y-6 text-gray-300">
+                <div className="space-y-4 text-gray-300">
               <div className="flex gap-4">
                 <FaLocationDot className="mt-1 text-xl text-[#DC2626]" />
                 <p>
@@ -114,7 +114,7 @@ const Footer = () => {
                 (Icon, idx) => (
                   <button
                     key={idx}
-                    className="flex h-14 w-14 items-center justify-center rounded-xl bg-white/10 text-xl transition hover:bg-[#A60000]"
+                    className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-xl bg-white/10 text-xl transition hover:bg-[#A60000]"
                   >
                     <Icon />
                   </button>

@@ -44,10 +44,8 @@ const DonationRequestPage = async () => {
       </div>
     </div> ) :  ( <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       {requests.map((request) => (
-    <RequestCard
-      key={request._id}
-      request={request}
-    />
+      <RequestCard key={request._id}
+      request={request}></RequestCard>
   ))}
     </div>
      )
