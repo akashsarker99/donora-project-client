@@ -7,3 +7,6 @@ export const getDonationRequests = async () =>{
 export const getDonationRequestById = async(id) =>{
     return await serverFetch(`/request/${id}`);
 }
+export const getMyDonationRequestsByEmail = async (email) => {
+  return await serverFetch(`/request?email=${email}`);
+};

@@ -1,9 +1,12 @@
+import { getMyDonationRequestsByEmail } from "@/lib/api/donationRequest";
 import { getUserSession } from "@/lib/core/session";
 import Link from "next/link";
 import { LuDroplets, LuPlus } from "react-icons/lu";
+import RecentRequestsTable from "./RecentRequestsTable";
 
-const DonorDashboard = async ({ requests = [] }) => {
+const DonorDashboard = async () => {
     const user = await getUserSession()
+    const requests = await getMyDonationRequestsByEmail(user?.email);
   return (
     <div className="space-y-6 p-4 md:p-6">
       <div className="rounded-3xl bg-linear-to-r from-[#ac0000] to-[#c70000] p-6 md:p-8 text-white">
@@ -22,6 +25,8 @@ const DonorDashboard = async ({ requests = [] }) => {
           </span>
         </p>
       </div>
+
+      <RecentRequestsTable requests={requests} />
 
       {requests.length === 0 && (
         <div className="flex min-h-[320px] flex-col items-center justify-center rounded-3xl bg-white p-6 text-center shadow-sm">

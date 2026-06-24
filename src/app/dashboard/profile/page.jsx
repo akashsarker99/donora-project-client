@@ -95,7 +95,7 @@ export default function ProfilePage() {
                         : "bg-yellow-500 text-yellow-100"
                     }`}
                   >
-                   <LuDot className="text-2xl"></LuDot> {user?.status} Donor
+                   <LuDot className="text-2xl"></LuDot> {user?.status} {user?.role}
                   </span>
                 </div>
               </div>

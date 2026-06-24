@@ -1,7 +1,7 @@
 'use client'
 import Link from "next/link";
 import Image from "next/image";
-import { LuLayoutDashboard, LuList, LuLogOut, LuPlus, LuDroplets } from "react-icons/lu";
+import { LuLayoutDashboard, LuList, LuLogOut, LuPlus, LuDroplets, LuBadgeDollarSign, LuGlobe, LuUsers } from "react-icons/lu";
 import { FaUser } from "react-icons/fa6";
 import { authClient } from "@/lib/auth-client";
 import { Button, Drawer } from "@heroui/react";
@@ -28,7 +28,7 @@ const DashboardSidebar = () => {
     {
       icon: LuList,
       label: "My Requests",
-      href: "/dashboard/requests",
+      href: "/dashboard/donor/requests",
     },
     {
       icon: LuPlus,
@@ -36,9 +36,75 @@ const DashboardSidebar = () => {
       href: "/dashboard/donor/create-request",
     },
   ];
+  const volunteerLinks = [
+  {
+    icon: LuLayoutDashboard,
+    label: "Dashboard",
+    href: "/dashboard/volunteer",
+  },
+  {
+    icon: FaUser,
+    label: "My Profile",
+    href: "/dashboard/profile",
+  },
+  {
+    icon: LuList,
+    label: "My Requests",
+    href: "/dashboard/donor/requests",
+  },
+  {
+    icon: LuPlus,
+    label: "Create Request",
+    href: "/dashboard/donor/create-request",
+  },
+  {
+    icon: LuGlobe,
+    label: "Public Requests",
+    href: "/donation-requests",
+  },
+  {
+    icon: LuDroplets,
+    label: "All Blood Requests",
+    href: "/dashboard/volunteer/all-blood-requests",
+  },
+];
+const adminLinks = [
+  {
+    icon: LuLayoutDashboard,
+    label: "Dashboard",
+    href: "/dashboard/admin",
+  },
+  {
+    icon: FaUser,
+    label: "My Profile",
+    href: "/dashboard/profile",
+  },
+  {
+    icon: LuList,
+    label: "My Requests",
+    href: "/dashboard/donor/requests",
+  },
+  {
+    icon: LuPlus,
+    label: "Create Request",
+    href: "/dashboard/donor/create-request",
+  },
+  {
+    icon: LuUsers,
+    label: "All Users",
+    href: "/dashboard/admin/all-users",
+  },
+  {
+    icon: LuGlobe,
+    label: "Public Requests",
+    href: "/donation-requests",
+  },
+];
 
   const navMap = {
     donor: donorLinks,
+    volunteer: volunteerLinks,
+    admin: adminLinks,
   };
 
   const navItems = navMap[user?.role] || donorLinks;
