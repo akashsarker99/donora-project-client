@@ -12,6 +12,8 @@ import { FaUser } from "react-icons/fa6";
 import Image from "next/image";
 import { createUser } from "@/lib/actions/user";
 
+
+
 const bloodGroups = ["A+","A-","B+","B-","AB+","AB-","O+","O-"];
 
 const RegisterPage = () => {
@@ -73,15 +75,15 @@ const districtName = districts.find(
     const image = await imageUpload(imageFile);
 
     const userInfo = {
-      name: user.name,
-      email: user.email,
-      image: image,
-      bloodGroup: user.bloodGroup,
-      district: districtName,
-      upazila: user.upazila,
-      role: "Donor",
-      status: "active",
-      createdAt: new Date(),
+        name: user.name,
+        email: user.email,
+        image,
+        bloodGroup: user.bloodGroup,
+        district: districtName,
+        upazila: user.upazila,
+        role: 'donor',
+        status: 'active',
+        createdAt: new Date(),
     };
     const {data, error} = await authClient.signUp.email({
       name: user.name,

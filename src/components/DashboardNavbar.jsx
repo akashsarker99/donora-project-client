@@ -24,7 +24,7 @@ const DashboardNavbar = () => {
               alt={user?.name}
               height={44}
               width={44}
-              className="object-cover"
+              className="h-12 w-12 object-cover"
             />
           </div>
         ) : (

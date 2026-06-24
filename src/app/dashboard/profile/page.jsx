@@ -1,84 +1,166 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import Image from 'next/image';
-import { Button } from '@heroui/react';
-import { LuPencil, LuSave } from 'react-icons/lu';
-import { authClient } from '@/lib/auth-client';
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import { Button } from "@heroui/react";
+import { LuDot, LuPencil, LuSave } from "react-icons/lu";
+import { authClient } from "@/lib/auth-client";
+import { toast } from "react-toastify";
+import { updateUser } from "@/lib/actions/user";
+import { getUserByEmail } from "@/lib/api/user";
 
 export default function ProfilePage() {
   const [isEditing, setIsEditing] = useState(false);
   const { data: session } = authClient.useSession();
-  const user = session?.user;
-console.log("user: ", user);
-  const avatarInitial = user?.name?.charAt(0).toUpperCase() || '';
+  const userDetails = session?.user;
+
+  const [user, setUser] = useState(null);
+  const [formData, setFormData] = useState({
+    name: "",
+    bloodGroup: "",
+    district: "",
+    upazila: "",
+  });
+
+  const handleSave = async () => {
+    try {
+      await updateUser(user.email, formData);
+
+      setUser({
+        ...user,
+        ...formData,
+      });
+
+      setIsEditing(false);
+
+      toast.success("Profile Updated Successfully");
+    } catch (error) {
+      toast.error("Failed to update profile");
+    }
+  };
+
+  useEffect(() => {
+    const getUser = async () => {
+      if (!userDetails?.email) return;
+
+      const data = await getUserByEmail(userDetails.email);
+      setUser(data);
+      setFormData({
+        name: data?.name || "",
+        bloodGroup: data?.bloodGroup || "",
+        district: data?.district || "",
+        upazila: data?.upazila || "",
+      });
+    };
+    getUser();
+  }, [userDetails?.email]);
+
+  const avatarInitial = user?.name?.charAt(0).toUpperCase() || "";
 
   return (
-    <div className="mx-auto max-w-5xl">
+    <div className="mx-auto max-w-5xl my-7">
       <div className="overflow-hidden rounded-3xl bg-white shadow-sm">
         <div className="bg-linear-to-r from-[#DC2626] to-[#B91C1C] px-8 py-10 text-white">
-          <div className="flex flex-col items-center gap-5 md:flex-row">
-            <div className="relative h-28 w-28 overflow-hidden rounded-full border-4 border-white">
-              {user?.image ? (
-                <Image
-                  src={user.image}
-                  alt={user?.name || 'Profile photo'}
-                  fill
-                  className="object-cover"
-                />
-              ) : (
-                <div className="flex h-full w-full items-center justify-center bg-red-700 text-4xl font-bold">
-                  {avatarInitial}
+          <div className="flex justify-between items-center">
+            <div className="flex flex-col items-center gap-5 md:flex-row">
+              <div className="relative h-28 w-28 overflow-hidden rounded-full border-4 border-white">
+                {user?.image ? (
+                  <Image
+                    src={user.image}
+                    alt={user?.name || "Profile photo"}
+                    fill
+                    className="object-cover"
+                  />
+                ) : (
+                  <div className="flex h-full w-full items-center justify-center bg-red-700 text-4xl font-bold">
+                    {avatarInitial}
+                  </div>
+                )}
+              </div>
+
+              <div>
+                <h1 className="font-logo text-4xl">{user?.name}</h1>
+
+                <p className="mt-2 text-red-100">{user?.email}</p>
+
+                <div className="mt-3 flex flex-wrap gap-3">
+                  <span className="rounded-full flex items-center bg-yellow-500 px-4 py-1 text-sm font-medium capitalize backdrop-blur-sm">
+                    {user?.role}
+                  </span>
+
+                  <span
+                    className={`flex items-center rounded-full px-4 py-1 text-sm font-medium capitalize backdrop-blur-sm ${
+                      user?.status === "active"
+                        ? "border-2 border-green-300 text-green-300"
+                        : "bg-yellow-500 text-yellow-100"
+                    }`}
+                  >
+                   <LuDot className="text-2xl"></LuDot> {user?.status} Donor
+                  </span>
                 </div>
-              )}
+              </div>
             </div>
+            <div className="mr-11">
+              <div className="relative flex h-28 w-28 items-center justify-center overflow-hidden rounded-[32px] border border-white/20 bg-white/10 backdrop-blur-xl">
+                <div className="absolute inset-0 bg-linear-to-br from-white/20 to-transparent" />
 
-            <div>
-              <h1 className="font-logo text-4xl">
-                {user?.name}
-              </h1>
-
-              <p className="mt-2 text-red-100">
-                {user?.email}
-              </p>
-
-              <span className="mt-3 inline-flex rounded-full bg-white/20 px-4 py-1 text-sm capitalize">
-                {user?.role}
-              </span>
+                <h2 className="relative font-logo text-5xl font-bold text-white">
+                  {user?.bloodGroup}
+                </h2>
+              </div>
             </div>
           </div>
         </div>
 
         <div className="p-8">
-          <div className="mb-8 flex justify-end">
-            {!isEditing ? (
-              <Button
-                onPress={() => setIsEditing(true)}
-                className="bg-[#DC2626] text-white"
-              >
-                <LuPencil />
-                Edit Profile
-              </Button>
-            ) : (
-              <Button
-                className="bg-[#DC2626] text-white"
-              >
-                <LuSave />
-                Save Changes
-              </Button>
-            )}
+          <div className="flex justify-between items-center mb-8">
+            <div>
+              <h2 className="text-2xl font-bold text-[#130505]">
+                Personal Information
+              </h2>
+
+              <p className="mt-1 text-gray-500">
+                Manage your profile details and donation information.
+              </p>
+            </div>
+            <div className="mb-8 flex justify-end">
+              {!isEditing ? (
+                <Button
+                  onPress={() => setIsEditing(true)}
+                  className="bg-[#DC2626] text-white"
+                >
+                  <LuPencil />
+                  Edit Profile
+                </Button>
+              ) : (
+                <Button
+                  onPress={handleSave}
+                  className="bg-[#DC2626] text-white"
+                >
+                  <LuSave />
+                  Save Changes
+                </Button>
+              )}
+            </div>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2">
+          <form className="grid gap-6 md:grid-cols-2">
             <div>
               <label className="mb-2 block text-sm font-semibold text-gray-500">
                 Full Name
               </label>
 
               <input
-                defaultValue={user?.name}
+                type="text"
+                value={formData.name}
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    name: e.target.value,
+                  })
+                }
                 disabled={!isEditing}
-                className="w-full rounded-2xl border border-gray-200 px-4 py-3 outline-none disabled:bg-gray-50"
+                className="w-full rounded-2xl border border-gray-200 px-4 py-3 text-slate-700 outline-none disabled:bg-gray-50"
               />
             </div>
 
@@ -88,9 +170,10 @@ console.log("user: ", user);
               </label>
 
               <input
-                defaultValue={user?.email}
+                type="email"
+                value={user?.email || ""}
                 disabled
-                className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3"
+                className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 text-slate-700"
               />
             </div>
 
@@ -100,18 +183,24 @@ console.log("user: ", user);
               </label>
 
               <select
-                defaultValue={user?.bloodGroup}
+                value={formData.bloodGroup}
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    bloodGroup: e.target.value,
+                  })
+                }
                 disabled={!isEditing}
-                className="w-full rounded-2xl border border-gray-200 px-4 py-3 disabled:bg-gray-50"
+                className="w-full rounded-2xl border border-gray-200 px-4 py-3 text-slate-700 outline-none disabled:bg-gray-50"
               >
-                <option>A+</option>
-                <option>A-</option>
-                <option>B+</option>
-                <option>B-</option>
-                <option>AB+</option>
-                <option>AB-</option>
-                <option>O+</option>
-                <option>O-</option>
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
               </select>
             </div>
 
@@ -121,9 +210,16 @@ console.log("user: ", user);
               </label>
 
               <input
-                defaultValue={user?.district}
+                type="text"
+                value={formData.district}
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    district: e.target.value,
+                  })
+                }
                 disabled={!isEditing}
-                className="w-full rounded-2xl border border-gray-200 px-4 py-3 disabled:bg-gray-50"
+                className="w-full rounded-2xl border border-gray-200 px-4 py-3 text-slate-700 outline-none disabled:bg-gray-50"
               />
             </div>
 
@@ -133,9 +229,16 @@ console.log("user: ", user);
               </label>
 
               <input
-                defaultValue={user?.upazila}
+                type="text"
+                value={formData.upazila}
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    upazila: e.target.value,
+                  })
+                }
                 disabled={!isEditing}
-                className="w-full rounded-2xl border border-gray-200 px-4 py-3 disabled:bg-gray-50"
+                className="w-full rounded-2xl border border-gray-200 px-4 py-3 text-slate-700 outline-none disabled:bg-gray-50"
               />
             </div>
 
@@ -145,12 +248,13 @@ console.log("user: ", user);
               </label>
 
               <input
-                value={user?.status || 'active'}
+                type="text"
+                value={user?.status || "active"}
                 disabled
-                className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 capitalize"
+                className="w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 text-slate-700 capitalize"
               />
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>
