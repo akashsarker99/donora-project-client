@@ -28,12 +28,12 @@ const DashboardSidebar = () => {
     {
       icon: LuList,
       label: "My Requests",
-      href: "/dashboard/donor/requests",
+      href: "/dashboard/requests",
     },
     {
       icon: LuPlus,
       label: "Create Request",
-      href: "/dashboard/donor/create-request",
+      href: "/dashboard/create-request",
     },
   ];
   const volunteerLinks = [
@@ -50,12 +50,12 @@ const DashboardSidebar = () => {
   {
     icon: LuList,
     label: "My Requests",
-    href: "/dashboard/donor/requests",
+    href: "/dashboard/requests",
   },
   {
     icon: LuPlus,
     label: "Create Request",
-    href: "/dashboard/donor/create-request",
+    href: "/dashboard/create-request",
   },
   {
     icon: LuGlobe,
@@ -82,12 +82,12 @@ const adminLinks = [
   {
     icon: LuList,
     label: "My Requests",
-    href: "/dashboard/donor/requests",
+    href: "/dashboard//requests",
   },
   {
     icon: LuPlus,
     label: "Create Request",
-    href: "/dashboard/donor/create-request",
+    href: "/dashboard/create-request",
   },
   {
     icon: LuUsers,
