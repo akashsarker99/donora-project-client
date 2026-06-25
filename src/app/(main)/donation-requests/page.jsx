@@ -1,5 +1,5 @@
 import RequestBanner from '@/components/donation-request/RequestBanner';
-import RequestCard from '@/components/donation-request/RequestCard';
+import FeaturedCard from '@/components/FeatureCard';
 import { getDonationRequests } from '@/lib/api/donationRequest';
 import { getUserSession } from '@/lib/core/session';
 import Link from 'next/link';
@@ -44,10 +44,10 @@ const DonationRequestPage = async () => {
           Create Request
         </Link>
       </div>
-    </div> ) :  ( <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+    </div> ) :  ( <div className="py-10 grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       {requests.map((request) => (
-      <RequestCard key={request._id}
-      request={request}></RequestCard>
+      <FeaturedCard key={request._id}
+      request={request}></FeaturedCard>
   ))}
     </div>
      )

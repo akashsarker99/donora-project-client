@@ -9,7 +9,7 @@ const Banner = () =>{
      <div className="relative bg-cover sm:bg-center bg-no-repeat "
       style={{backgroundImage: "url('/hero.png')"}}>
 
-         <div className="relative mx-auto max-w-7xl px-6 py-24 lg:py-32">
+         <div className="relative mx-auto container px-6 py-24 lg:py-32">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <div className="text-center sm:text-left">
 

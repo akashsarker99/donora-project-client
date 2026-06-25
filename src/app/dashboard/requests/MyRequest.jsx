@@ -4,7 +4,7 @@
 import { deleteDonationRequest } from "@/lib/actions/deleteDonation";
 import { updateDonationRequest } from "@/lib/actions/donationRequest";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import {
   LuDroplets,
@@ -28,7 +28,7 @@ const statusStyles = {
 };
 
 const MyRequestsPage = ({requests}) => {
-    console.log("requests: ", requests);
+  const pathName = usePathname();
     const router = useRouter();
   const [statusFilter, setStatusFilter] = useState("all");
 
@@ -51,7 +51,6 @@ const handleCancel = async (id) => {
 };
 
 const handleDelete = async (id) => {
-    console.log("id: ", id);
   const confirmed = window.confirm(
     "Are you sure you want to delete this request?"
   );
@@ -75,7 +74,9 @@ const handleDelete = async (id) => {
   return (
     <section className="mx-auto my-8 max-w-7xl px-4 md:px-6">
       <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-        <div>
+        {
+          pathName !== '/dashboard/admin/public-requests' ? (
+             <div>
           <h1 className="font-logo text-3xl md:text-4xl text-[#130505]">
             My Donation Requests
           </h1>
@@ -84,7 +85,20 @@ const handleDelete = async (id) => {
             Manage and track all of your blood
             donation requests.
           </p>
+        </div> 
+          ): (
+             <div>
+          <h1 className="font-logo text-3xl md:text-4xl text-[#130505]">
+             Public Donation Requests
+          </h1>
+
+          <p className="mt-2 text-gray-500">
+            Manage and track all of the public blood
+            donation requests.
+          </p>
         </div>
+          )
+        }
 
         <div className="flex items-center gap-3">
           <div className="flex h-12 w-12 items-center justify-center rounded-full border border-gray-200 bg-white shadow-sm">

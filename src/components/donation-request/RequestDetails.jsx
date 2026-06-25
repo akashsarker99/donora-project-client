@@ -27,7 +27,7 @@ const RequestDetails = ({ request, user }) => {
               </h1>
 
               <div
-                className={`mt-4 inline-flex rounded-full px-4 py-1 text-lg font-medium capitalize ${
+                className={`mt-4 inline-flex rounded-full px-4 py-1 text-lg font-medium uppercase ${
                   statusColors[request.requestStatus]
                 }`}
               >

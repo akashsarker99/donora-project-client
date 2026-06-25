@@ -8,9 +8,9 @@ import { Avatar, Chip } from "@heroui/react";
 
 
 const roleColor = {
-  Donor: "primary",
-  Volunteer: "warning",
-  Admin: "secondary",
+  donor: "warning",
+  volunteer: "accent",
+  admin: "secondary",
 };
 
 export default function AllUsersPage({ users }) {
@@ -124,7 +124,7 @@ export default function AllUsersPage({ users }) {
 
                       <div className="flex items-center gap-4">
 
-                      <div className="flex h-13 w-13 items-center justify-center overflow-hidden rounded-full border-2 border-[#C70000] transition duration-300 group-hover:scale-105">
+                      <div className="flex h-13 w-13 items-center justify-center overflow-hidden rounded-full border-2 border-[#C70000]">
                                   <Image
                                     src={user.image}
                                     alt={user.name}
@@ -157,7 +157,9 @@ export default function AllUsersPage({ users }) {
                           roleColor[user.role] ||
                           "default"
                         }
-                        variant="flat"
+                        variant="soft"
+                        className="capitalize"
+                        size="lg"
                       >
                         {user.role}
                       </Chip>
@@ -172,7 +174,9 @@ export default function AllUsersPage({ users }) {
                             ? "success"
                             : "danger"
                         }
-                        variant="flat"
+                        variant="soft"
+                        className="capitalize"
+                        size="lg"
                       >
                         {user.status}
                       </Chip>
@@ -208,12 +212,17 @@ export default function AllUsersPage({ users }) {
 
                 <div className="flex justify-between">
 
-                  <div className="flex gap-4">
+                  <div className="flex gap-4 item-center">
 
-                    <Avatar
-                      src={user.image}
-                      name={user.name}
-                    />
+                    <div className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-full border-2 border-[#C70000]">
+                         <Image
+                                    src={user.image}
+                                    alt={user.name}
+                                    width={44}
+                                    height={44}
+                                    className="h-full w-full object-cover"
+                                  />
+                    </div>
 
                     <div>
 
@@ -242,7 +251,9 @@ export default function AllUsersPage({ users }) {
                       roleColor[user.role] ||
                       "default"
                     }
-                    variant="flat"
+                    variant="soft"
+                    className="capitalize"
+                    size="lg"
                   >
                     {user.role}
                   </Chip>
@@ -253,7 +264,9 @@ export default function AllUsersPage({ users }) {
                         ? "success"
                         : "danger"
                     }
-                    variant="flat"
+                    variant="soft"
+                    className="capitalize"
+                    size="lg"
                   >
                     {user.status}
                   </Chip>

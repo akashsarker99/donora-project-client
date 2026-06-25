@@ -69,7 +69,7 @@ const UserDropdown = () => {
     {user.name}
   </h3>
 
-  <span className="mt-1 inline-block rounded-full border border-red-200 bg-red-50 px-3 py-1 text-xs font-medium text-[#DC2626]">
+  <span className="mt-1 inline-block rounded-full border capitalize border-red-200 bg-red-50 px-3 py-1 text-xs font-medium text-[#DC2626]">
     {user.role || "Donor"}
   </span>
 </Link>

@@ -1,7 +1,7 @@
 "use client";
 
 import {
-   Dropdown,
+  Dropdown,
   DropdownTrigger,
   DropdownPopover,
   DropdownMenu,
@@ -12,6 +12,7 @@ import {
   LuEllipsisVertical,
   LuShield,
   LuShieldCheck,
+  LuUser,
   LuUserCheck,
   LuUserCog,
 } from "react-icons/lu";
@@ -24,10 +25,8 @@ import { updateUser } from "@/lib/actions/user";
 export default function UserActionMenu({ user }) {
   const router = useRouter();
 
-  const { data: session } = authClient.useSession()
-;
-  const currentUserEmail = session?.user?.email
-;
+  const { data: session } = authClient.useSession();
+  const currentUserEmail = session?.user?.email;
   const isCurrentUser = currentUserEmail === user.email;
 
   const handleUpdate = async (data, message) => {
@@ -43,7 +42,7 @@ export default function UserActionMenu({ user }) {
     }
   };
 
- return (
+  return (
     <Dropdown placement="bottom-end">
       <DropdownTrigger
         aria-label="Open user actions"
@@ -56,11 +55,7 @@ export default function UserActionMenu({ user }) {
       <DropdownPopover>
         <DropdownMenu aria-label="User Actions">
           {isCurrentUser ? (
-            <DropdownItem
-              key="self"
-              isReadOnly
-              className="text-default-500"
-            >
+            <DropdownItem key="self" isReadOnly className="text-default-500">
               You can't modify your own account
             </DropdownItem>
           ) : (
@@ -73,14 +68,25 @@ export default function UserActionMenu({ user }) {
                   onPress={() =>
                     handleUpdate(
                       { status: "blocked" },
-                      "User blocked successfully."
+                      "User blocked successfully.",
                     )
                   }
                 >
                   Block User
                 </DropdownItem>
               )}
-
+            
+              {(user.role === "volunteer" || user.role === "admin") && (
+                <DropdownItem
+                  key="donor"
+                  startContent={<LuUser />}
+                  onPress={() =>
+                    handleUpdate({ role: "donor" }, "User is now a Donor.")
+                  }
+                >
+                  Make Donor
+                </DropdownItem>
+              )}
               {user.status === "blocked" && (
                 <DropdownItem
                   key="unblock"
@@ -89,7 +95,7 @@ export default function UserActionMenu({ user }) {
                   onPress={() =>
                     handleUpdate(
                       { status: "active" },
-                      "User unblocked successfully."
+                      "User unblocked successfully.",
                     )
                   }
                 >
@@ -97,30 +103,27 @@ export default function UserActionMenu({ user }) {
                 </DropdownItem>
               )}
 
-              {user.role === "Donor" && (
+              {user.role === "donor" && (
                 <DropdownItem
                   key="volunteer"
                   startContent={<LuUserCheck />}
                   onPress={() =>
                     handleUpdate(
-                      { role: "Volunteer" },
-                      "User is now a Volunteer."
+                      { role: "volunteer" },
+                      "User is now a Volunteer.",
                     )
                   }
                 >
                   Make Volunteer
                 </DropdownItem>
               )}
-              {user.role !== "Admin" && (
+              {user.role !== "admin" && (
                 <DropdownItem
                   key="admin"
                   startContent={<LuUserCog />}
                   color="secondary"
                   onPress={() =>
-                    handleUpdate(
-                      { role: "Admin" },
-                      "User promoted to Admin."
-                    )
+                    handleUpdate({ role: "admin" }, "User promoted to Admin.")
                   }
                 >
                   Make Admin

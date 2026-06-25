@@ -2,13 +2,18 @@
 
 import { authClient } from "@/lib/auth-client";
 import Image from "next/image";
+import DashboardMobileSidebar from "./DashboardMobileSidebar";
 
-const DashboardNavbar = () => {
+const DashboardNavbar = ({sidebarContent}) => {
   const { data: session } = authClient.useSession();
   const user = session?.user;
   return (
-    <header className="flex h-20 items-center justify-between border-b border-gray-100 bg-white px-6">
-      <h1 className="text-xl font-bold text-[#130505]">
+    <header className=" flex h-20 items-center justify-between border-b border-gray-100 bg-white px-6">
+      
+      <h1 className="text-xl font-bold text-[#130505] flex items-center">
+         <div>
+        <DashboardMobileSidebar sidebarContent={sidebarContent}></DashboardMobileSidebar>
+       </div>
         Dashboard
       </h1>
 
