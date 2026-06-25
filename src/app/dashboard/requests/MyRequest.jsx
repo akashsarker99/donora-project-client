@@ -211,7 +211,7 @@ const handleDelete = async (id) => {
     {request.requestStatus === "pending" && (
       <>
         <Link
-          href={`/dashboard/my-requests/edit/${request._id}`}
+          href={`/dashboard/edit-request/${request._id}`}
           className="rounded-lg p-2 text-green-600 hover:bg-green-50"
         >
           <LuPencil size={18} />
@@ -313,9 +313,8 @@ const handleDelete = async (id) => {
         {request.requestStatus === "pending" && (
           <>
             <Link
-              href={`/dashboard/my-requests/edit/${request._id}`}
-              className="flex-1 rounded-xl bg-green-50 py-2 text-center text-green-600"
-            >
+              href={`/dashboard/edit-request/${request._id}`}
+              className="flex-1 rounded-xl bg-green-50 py-2 text-center text-green-600">
               Edit
             </Link>
 

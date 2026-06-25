@@ -13,7 +13,7 @@ const RequestDetails = ({ request, user }) => {
   return (
   <div className="mx-auto max-w-6xl py-8">
     <div className="overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-sm">
-      <div className="bg-gradient-to-r from-[#DC2626] to-[#B91C1C] p-8 text-white">
+      <div className="bg-linear-to-r from-[#DC2626] to-[#B91C1C] p-8 text-white">
         <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <div>
             <p className="text-sm uppercase tracking-[0.3em] text-red-100">

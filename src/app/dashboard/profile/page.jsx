@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Button } from "@heroui/react";
-import { LuDot, LuPencil, LuSave } from "react-icons/lu";
+import { LuDot, LuDroplets, LuPencil, LuSave } from "react-icons/lu";
 import { authClient } from "@/lib/auth-client";
 import { toast } from "react-toastify";
 import { updateUser } from "@/lib/actions/user";
@@ -103,19 +103,29 @@ export default function ProfilePage() {
               </div>
             </div>
             <div className="mr-11">
-              <div className="relative flex h-20 w-20 sm:h-28 sm:w-28 items-center justify-center overflow-hidden rounded-2xl sm:rounded-[32px] border border-white/20 bg-white/10 backdrop-blur-xl">
-                <div className="absolute inset-0 bg-linear-to-br from-white/20 to-transparent" />
-
-                <h2 className="relative font-logo text-3xl sm:text-5xl font-bold text-white">
-                  {user?.bloodGroup}
-                </h2>
+            <div className="hidden sm:block rounded-3xl bg-white p-5 shadow-lg">
+              <div className="flex items-center gap-4">
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-red-50">
+                  <LuDroplets className="text-3xl text-[#DC2626] " />
+                </div>
+            
+                <div>
+                  <p className="text-xs font-medium uppercase tracking-wider text-gray-500">
+                    Blood Group
+                  </p>
+            
+                  <h2 className="font-logo text-4xl text-[#DC2626]">
+                    {user?.bloodGroup}
+                  </h2>
+                </div>
               </div>
+            </div>
             </div>
           </div>
         </div>
 
         <div className="p-8">
-          <div className="flex justify-between items-center mb-8">
+          <div className="flex flex-col sm:flex-row gap-8 sm:justify-between sm:items-center mb-8">
             <div>
               <h2 className="text-2xl font-bold text-[#130505]">
                 Personal Information
@@ -125,7 +135,7 @@ export default function ProfilePage() {
                 Manage your profile details and donation information.
               </p>
             </div>
-            <div className="mb-8 flex justify-end">
+            <div className="mb-8 flex justify-start">
               {!isEditing ? (
                 <Button
                   onPress={() => setIsEditing(true)}
