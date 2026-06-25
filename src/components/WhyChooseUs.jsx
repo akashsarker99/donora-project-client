@@ -37,7 +37,7 @@ const features = [
 const WhyChooseUs = () => {
   return (
     <section className="bg-[#4D0606] py-20">
-      <div className="mx-auto grid container gap-12 px-4 lg:grid-cols-2 lg:items-center">
+      <div className="mx-auto grid container gap-8 px-4 lg:grid-cols-2 lg:items-center">
 
         <div>
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-red-400">

@@ -1,10 +1,9 @@
 import {
   LuUsers,
-  LuHeart,
   LuActivity,
 } from "react-icons/lu";
 
-
+import { RiExchangeFundsLine } from "react-icons/ri";
 import { getAllUsers } from "@/lib/api/user";
 import { getAllDonationRequests } from "@/lib/api/donationRequest";
 import { getPayments } from "@/lib/api/payments";
@@ -19,8 +18,8 @@ const StatsSection = async () => {
      const totalFunding = payments.reduce((total, payment) => total + Number(payment.amount), 0);
      const activeRequests = requests.filter(request => request.requestStatus === "inprogress").length;
   return (
-    <section className="bg-[#ab0000] py-13">
-      <div className="mx-auto max-w-7xl px-4">
+    <section className="bg-linear-to-t from-[#700101] to-[#c70000] py-13">
+      <div className="mx-auto container px-4">
         <div className="grid gap-8 lg:grid-cols-3">
 
           <StatsCard
@@ -31,7 +30,7 @@ const StatsSection = async () => {
           />
 
           <StatsCard
-            icon={LuHeart}
+            icon={RiExchangeFundsLine}
             value={`${(totalFunding ?? 0).toLocaleString()} Tk`}
             title="Total Funding"
             subtitle="Raised by our community"

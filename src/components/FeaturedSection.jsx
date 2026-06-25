@@ -1,7 +1,7 @@
 import Link from "next/link";
 import FeaturedCard from "./FeatureCard";
 import { getAllDonationRequests } from "@/lib/api/donationRequest";
-import { LuArrowRight } from "react-icons/lu";
+import { FaArrowRightLong } from "react-icons/fa6";
 
 const FeaturedSection = async () => {
     const requestData = await getAllDonationRequests();
@@ -12,7 +12,7 @@ const FeaturedSection = async () => {
 
         <div className="mb-14 text-center">
 
-          <h2 className="mt-5 font-logo text-5xl text-[#130505]">
+          <h2 className="mt-5 font-logo text-3xl sm:text-4xl md:text-5xl text-[#130505]">
             Featured Donation Requests
           </h2>
 
@@ -39,11 +39,11 @@ const FeaturedSection = async () => {
 
          <Link
         href={`/donation-requests`}
-        className=" inline-flex items-center gap-2 font-semibold text-[#c70000] transition-all hover:text-[#ac0000] text-xl underline"
+        className=" inline-flex items-center gap-2 font-semibold text-[#c70000] transition-all hover:text-[#ac0000] text-lg"
       >
         View All Requests
 
-        <LuArrowRight className="transition hover:translate-x-1" />
+        <FaArrowRightLong className="transition hover:translate-x-1" />
 
       </Link>
 

@@ -1,5 +1,6 @@
 
 import Banner from '@/components/Banner';
+import ContactSection from '@/components/ContactSection';
 import FeaturedSection from '@/components/FeaturedSection';
 import StatsSection from '@/components/StatsSection';
 import WhyChooseUs from '@/components/WhyChooseUs';
@@ -13,6 +14,7 @@ const HomePage = () => {
            <StatsSection></StatsSection>
            <FeaturedSection></FeaturedSection>
            <WhyChooseUs></WhyChooseUs>
+           <ContactSection></ContactSection>
         </div>
     );
 };

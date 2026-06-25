@@ -22,12 +22,12 @@ const RequestDetails = ({ request, user }) => {
         <div className="p-8">
           <div className="mb-10 flex items-start justify-between">
             <div>
-              <h1 className="font-logo text-5xl text-[#130505]">
+              <h1 className="font-logo text-3xl sm:text-4xl text-[#130505]">
                 Blood Request Details
               </h1>
 
               <div
-                className={`mt-4 inline-flex rounded-full px-4 py-1 text-lg font-medium uppercase ${
+                className={`mt-4 inline-flex rounded-full sm:px-4 sm:py-1 px-2 sm:text-lg font-medium uppercase ${
                   statusColors[request.requestStatus]
                 }`}
               >
