@@ -1,6 +1,6 @@
 import { getUserSession } from "@/lib/core/session";
 import { Button, FieldError, Input, Label, Modal, TextField } from "@heroui/react";
-import { LuHeart } from "react-icons/lu";
+import { TbCoinTaka } from "react-icons/tb";
 
 
 const FundModal = async () => {
@@ -8,7 +8,7 @@ const FundModal = async () => {
     return (
 <Modal>
   <Button className="flex items-center gap-2 rounded-xl bg-[#C70000] px-5 py-6 font-semibold text-white transition hover:bg-[#A60000]">
-    <LuHeart />
+    <TbCoinTaka  />
     Give Fund
   </Button>
 

@@ -59,11 +59,12 @@ export default function ProfilePage() {
   const avatarInitial = user?.name?.charAt(0).toUpperCase() || "";
 
   return (
-    <div className="mx-auto max-w-5xl my-7">
+    <div className="mx-7">
+      <div className="mx-auto max-w-5xl m-7 ">
       <div className="overflow-hidden rounded-3xl bg-white shadow-sm">
         <div className="bg-linear-to-r from-[#DC2626] to-[#B91C1C] px-8 py-10 text-white">
           <div className="flex justify-between items-center">
-            <div className="flex flex-col items-center gap-5 md:flex-row">
+            <div className="flex flex-col gap-5 md:flex-row ">
               <div className="relative h-28 w-28 overflow-hidden rounded-full border-4 border-white">
                 {user?.image ? (
                   <Image
@@ -102,10 +103,10 @@ export default function ProfilePage() {
               </div>
             </div>
             <div className="mr-11">
-              <div className="relative flex h-28 w-28 items-center justify-center overflow-hidden rounded-[32px] border border-white/20 bg-white/10 backdrop-blur-xl">
+              <div className="relative flex h-20 w-20 sm:h-28 sm:w-28 items-center justify-center overflow-hidden rounded-2xl sm:rounded-[32px] border border-white/20 bg-white/10 backdrop-blur-xl">
                 <div className="absolute inset-0 bg-linear-to-br from-white/20 to-transparent" />
 
-                <h2 className="relative font-logo text-5xl font-bold text-white">
+                <h2 className="relative font-logo text-3xl sm:text-5xl font-bold text-white">
                   {user?.bloodGroup}
                 </h2>
               </div>
@@ -258,6 +259,7 @@ export default function ProfilePage() {
           </form>
         </div>
       </div>
+    </div>
     </div>
   );
 }

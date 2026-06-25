@@ -70,7 +70,7 @@ const handleDelete = async (id) => {
         </div>
 
         <Link
-          href="/dashboard/donor/requests"
+          href="/dashboard/requests"
         >
           <span className="rounded-full bg-red-600 px-6 py-2 font-semibold text-white transition hover:bg-red-700">View All</span>
         </Link>
