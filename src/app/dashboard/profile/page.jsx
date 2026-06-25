@@ -21,25 +21,9 @@ export default function ProfilePage() {
     district: "",
     upazila: "",
   });
+  console.log("user: ", user);
 
-  const handleSave = async () => {
-    try {
-      await updateUser(user.email, formData);
-
-      setUser({
-        ...user,
-        ...formData,
-      });
-
-      setIsEditing(false);
-
-      toast.success("Profile Updated Successfully");
-    } catch (error) {
-      toast.error("Failed to update profile");
-    }
-  };
-
-  useEffect(() => {
+    useEffect(() => {
     const getUser = async () => {
       if (!userDetails?.email) return;
 
@@ -54,6 +38,23 @@ export default function ProfilePage() {
     };
     getUser();
   }, [userDetails?.email]);
+
+  const handleSave = async () => {
+    try {
+      await updateUser(userDetails.email, formData);
+
+      setUser({
+        ...user,
+        ...formData,
+      });
+
+      setIsEditing(false);
+
+      toast.success("Profile Updated Successfully");
+    } catch (error) {
+      toast.error("Failed to update profile");
+    }
+  };
 
   const avatarInitial = user?.name?.charAt(0).toUpperCase() || "";
 

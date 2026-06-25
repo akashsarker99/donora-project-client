@@ -21,10 +21,10 @@ const AdminDashboard = async () => {
   },
   {
     title: "Total Funding",
-    value: `৳${payments.reduce(
+    value: `${payments.reduce(
       (total, payment) => total + Number(payment.amount),
       0
-    )}`,
+    )} Tk`,
     icon: LuBadgeDollarSign,
     color: "green",
   },

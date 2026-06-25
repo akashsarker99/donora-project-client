@@ -83,6 +83,7 @@ const districtName = districts.find(
         upazila: user.upazila,
         role: 'donor',
         status: 'active',
+        createdAt: new Date(),
     };
     const {data, error} = await authClient.signUp.email({
       name: user.name,

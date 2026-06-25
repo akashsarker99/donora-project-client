@@ -46,7 +46,7 @@ export default function RootLayout({ children }) {
       `}
     >
       <body className={`${poppins.className} min-h-screen`}>
-        {children}
+           {children}
         <ToastContainer></ToastContainer>
       </body>
     </html>
