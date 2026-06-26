@@ -60,7 +60,7 @@ export default function UserActionMenu({ user }) {
             </DropdownItem>
           ) : (
             <>
-              {user.status === "active" && (
+              {user.status === "active" && user.role !== "admin" && (
                 <DropdownItem
                   key="block"
                   startContent={<LuShield />}
@@ -76,7 +76,7 @@ export default function UserActionMenu({ user }) {
                 </DropdownItem>
               )}
             
-              {(user.role === "volunteer" || user.role === "admin") && (
+              {user.role === "volunteer"  && (
                 <DropdownItem
                   key="donor"
                   startContent={<LuUser />}

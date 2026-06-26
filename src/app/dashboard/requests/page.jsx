@@ -1,13 +1,20 @@
 import React from 'react';
-import MyRequestsPage from './MyRequest';
 import { getMyDonationRequestsByEmail } from '@/lib/api/donationRequest';
 import { getUserSession } from '@/lib/core/session';
 import Link from 'next/link';
 import { LuDroplets, LuPlus } from 'react-icons/lu';
+import MyRequestsPage from './MyRequest';
+import { getUserByEmail } from '@/lib/api/user';
+import BlockedUserMessage from '@/components/BlockedUserMessage';
 
 const RequestShow = async () => {
     const user = await getUserSession();
+    const userRole = await getUserByEmail(user?.email);
     const request = await getMyDonationRequestsByEmail(user?.email);
+    
+  if(userRole?.status === 'blocked') {
+    return <BlockedUserMessage></BlockedUserMessage>
+  }
     return (
         <div>
           
@@ -25,8 +32,8 @@ const RequestShow = async () => {
           </p>
 
           <Link
-            href="/dashboardc/reate-request"
-            className="mt-6 flex items-center gap-2 rounded-2xl bg-[#C70000] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#A60000]"
+            href="/dashboardc/create-request"
+            className="mt-6 flex items-center gap-2 rounded-full bg-[#C70000] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#A60000]"
           >
             <LuPlus size={18} />
             Create Request

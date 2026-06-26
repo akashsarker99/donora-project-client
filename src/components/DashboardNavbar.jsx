@@ -18,7 +18,7 @@ const DashboardNavbar = ({sidebarContent}) => {
       </h1>
 
       <div className="flex items-center gap-4">
-        <span className="rounded-full border capitalize border-red-200 bg-red-50 px-4 py-1 text-md font-semibold text-[#DC2626]">
+        <span className="rounded-full border uppercase border-red-200 bg-red-50 px-4 py-1 text-md font-semibold text-[#DC2626]">
           {user?.role || "Donor"}
         </span>
 

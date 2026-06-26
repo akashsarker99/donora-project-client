@@ -63,11 +63,10 @@ const SearchCard = ({ donor }) => {
         <Button
           as={Link}
           href={`/donor/${donor._id}`}
-          color="danger"
           radius="full"
-          className="w-full"
+          className="w-full bg-[#dc0505] text-base text-white hover:bg-[#ac0000]"
         >
-          View Profile
+          Contact Now
         </Button>
       </div>
     </div>

@@ -35,13 +35,13 @@ const Banner = async () =>{
             <div className="mt-10 flex flex-wrap gap-5 justify-center sm:justify-start">
                {
                  user? (<Link href={'/donation-requests'}>
-                 <button className="flex items-center gap-3 rounded-2xl bg-white px-8 py-4 font-semibold text-[#DC2626] transition-all ease-in-out duration-300 hover:scale-105">
+                 <button className="flex cursor-pointer items-center gap-3 rounded-2xl bg-white px-8 py-4 font-semibold text-[#DC2626] transition-all ease-in-out duration-300 hover:scale-105">
                 <FaDroplet />
                  Donate Now
               </button>
                </Link>): (
                 <Link href={'/register'}>
-                 <button className="flex items-center gap-3 rounded-2xl bg-white px-8 py-4 font-semibold text-[#DC2626] transition-all ease-in-out duration-300 hover:scale-105">
+                 <button className="flex cursor-pointer items-center gap-3 rounded-2xl bg-white px-8 py-4 font-semibold text-[#DC2626] transition-all ease-in-out duration-300 hover:scale-105">
                 <FaDroplet />
                 Join as a Donor
               </button>
@@ -50,7 +50,7 @@ const Banner = async () =>{
                }
 
               <Link href={'/searching'}>
-              <button className="flex items-center gap-3 rounded-2xl border border-white/30 px-8 py-4 font-semibold text-white backdrop-blur transition hover:bg-[#A60000] hover:text-white hover:border-[#A60000]">
+              <button className="flex cursor-pointer items-center gap-3 rounded-2xl border border-white/30 px-8 py-4 font-semibold text-white backdrop-blur transition hover:bg-[#A60000] hover:text-white hover:border-[#A60000]">
                 <FaMagnifyingGlass />
                 Search Donors
               </button>

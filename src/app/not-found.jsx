@@ -1,45 +1,55 @@
+'use client'
 import Link from "next/link";
-import { FaDroplet } from "react-icons/fa6";
+import { Button } from "@heroui/react";
+import {
+  LuSearchX,
+  LuHouse,
+  LuArrowLeft,
+} from "react-icons/lu";
 
-const NotFound = () =>{
+const NotFound = () => {
   return (
-    <section className="flex min-h-screen items-center justify-center bg-linear-to-br from-[#130505] via-[#3A0000] to-[#7A0000] px-6">
-      <div className="max-w-2xl text-center">
-        <h1
-          className="mb-4 text-7xl font-bold text-white md:text-9xl font-logo">404
-        </h1>
+    <section className="flex min-h-screen items-center justify-center bg-gray-50 px-4 py-16">
+      <div className="w-full max-w-2xl rounded-[32px] border border-gray-200 bg-white p-10 text-center shadow-sm">
 
-        <h2 className="mb-4 text-3xl font-bold text-white md:text-5xl">
-          Oops! Page Not Found
-        </h2>
-
-        <p className="mx-auto mb-10 max-w-xl text-lg text-gray-300">
-          The page you're looking for doesn't exist or may have been moved.
-          Let's get you back to helping save lives.
-        </p>
-
-        <div className="flex flex-col justify-center gap-4 sm:flex-row">
-          <Link
-            href="/"
-            className="rounded-xl bg-[#DC2626] px-8 py-4 font-semibold text-white transition hover:bg-[#B91C1C]"
-          >
-            Back to Home
-          </Link>
-
-          <Link
-            href="/donation-requests"
-            className="rounded-xl border border-white/20 px-8 py-4 font-semibold text-white transition hover:bg-white/10"
-          >
-            Donation Requests
-          </Link>
+        <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-red-50">
+          <LuSearchX className="text-5xl text-[#DC2626]" />
         </div>
 
-        <p className="mt-12 text-sm text-gray-400">
-          Donora • Every drop counts, every life matters.
+        <p className="mt-8 text-sm font-semibold uppercase tracking-[0.35em] text-[#DC2626]">
+          ERROR 404
         </p>
+
+        <h1 className="mt-3 font-logo text-3xl sm:text-5xl text-[#130505]">
+          Page Not Found
+        </h1>
+
+        <p className="mx-auto mt-5 max-w-lg  sm:text-lg leading-8 text-gray-500">
+          The page you're looking for doesn't exist, may have been moved,
+          or the URL might be incorrect.
+        </p>
+
+        <div className="mt-10 flex justify-center">
+          <div className="rounded-full bg-red-50 px-5 py-2 text-sm font-medium text-[#DC2626]">
+            🩸 Every donation still saves a life.
+          </div>
+        </div>
+
+         <div className="mt-10 flex justify-center gap-4">
+
+         <Link href={'/'} > <Button className="bg-[#e00101] hover:bg-[#c70000]">
+           <LuHouse /> Go Home
+          </Button></Link>
+
+          <Button onPress={()=>router.back()} variant="outline">
+           <LuArrowLeft /> Go Back
+          </Button>
+
+        </div>
+
       </div>
     </section>
   );
-}
+};
 
-export default NotFound
+export default NotFound;

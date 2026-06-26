@@ -21,7 +21,6 @@ const DonateModal = ({request, user}) => {
         };
     
         await updateDonationRequest(request._id,donationData);
-    
         toast.success("Donation confirmed successfully");
         router.refresh();
          
@@ -44,14 +43,14 @@ const DonateModal = ({request, user}) => {
       <Modal.Dialog className="w-full max-w-3xl overflow-hidden rounded-[32px] bg-white shadow-2xl">
         <Modal.CloseTrigger />
 
-        <Modal.Header className="border-b border-gray-100 px-8 py-6">
-          <Modal.Heading className="font-logo text-4xl text-[#130505]">
+        <Modal.Header className="border-b border-gray-100 px-6 py-6">
+          <Modal.Heading className="font-logo text-2xl sm:text-4xl text-[#130505]">
             Confirm Your Donation
           </Modal.Heading>
         </Modal.Header>
 
-        <Modal.Body className="p-8">
-          <div className="mb-8 rounded-3xl border border-red-100 bg-red-50 p-6 text-lg leading-9 text-[#B91C1C]">
+        <Modal.Body className="p-4">
+          <div className="mb-8 rounded-3xl border border-red-100 bg-red-50 p-6 sm:text-lg leading-9 text-[#B91C1C]">
             You are confirming to donate{" "}
             <span className="font-bold">
               {request.bloodGroup}

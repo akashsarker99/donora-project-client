@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import React from 'react';
 import { LuDroplets, LuPlus } from 'react-icons/lu';
-import MyRequestsPage from '../../app/dashboard/requests/MyRequest';
 import { getAllDonationRequests } from '@/lib/api/donationRequest';
+import MyRequestsPage from '@/app/dashboard/requests/MyRequest';
 
 
 const AllPublicRequest = async () => {

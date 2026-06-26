@@ -91,10 +91,10 @@ export default function ProfilePage() {
                   </span>
 
                   <span
-                    className={`flex items-center rounded-full px-4 py-1 text-sm font-medium capitalize backdrop-blur-sm ${
+                    className={`flex items-center text-sm font-medium capitalize backdrop-blur-sm ${
                       user?.status === "active"
-                        ? "border-2 border-green-300 text-green-300"
-                        : "bg-yellow-500 text-yellow-100"
+                        ? " text-green-300"
+                        : "bg-red-500 shadow-2xl rounded-2xl px-3 text-white"
                     }`}
                   >
                    <LuDot className="text-2xl"></LuDot> {user?.status} {user?.role}

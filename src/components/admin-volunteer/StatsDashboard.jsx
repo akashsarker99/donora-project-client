@@ -1,7 +1,7 @@
 import { getUserSession } from '@/lib/core/session';
 import React from 'react';
 import AdminStatsCard from './AdminStatsCard';
-import { getAllUsers } from '@/lib/api/user';
+import { getAllUsers, getUserByEmail } from '@/lib/api/user';
 import { getAllDonationRequests } from '@/lib/api/donationRequest';
 import { LuActivity, LuBadgeDollarSign, LuHeartHandshake, LuUsers } from 'react-icons/lu';
 import { getPayments } from '@/lib/api/payments';
@@ -11,7 +11,7 @@ const StatsDashboard = async () => {
     const users = await getAllUsers();
     const requests = await getAllDonationRequests();
     const payments = await getPayments();
-    console.log("users: ", users);
+     const userRole = await getUserByEmail(user?.email);
     const stats = [
   {
     title: "Total Users",
@@ -48,8 +48,8 @@ const StatsDashboard = async () => {
 
         <p className="mt-3 text-base">
           Donor Account · Status:
-          <span className="ml-1 font-medium text-green-300">
-            Active
+         <span className={`ml-1 font-medium uppercase ${userRole?.status === 'active' ? "text-green-300" : "bg-red-500 shadow-2xl rounded-2xl px-3 py-1 text-white"}`}>
+              {userRole?.status}
           </span>
         </p>
       </div>

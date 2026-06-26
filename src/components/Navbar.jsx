@@ -40,15 +40,17 @@ const Navbar = () => {
             Donation Requests
           </Link>
 
-          <Link
+         {
+          user &&  <Link
             href="/funding"
             className="font-medium text-gray-600 transition hover:text-[#DC2626]"
           >
             Funding
           </Link>
+         }
 
           <Link
-            href="/search"
+            href="/searching"
             className="font-medium text-gray-600 transition hover:text-[#DC2626]"
           >
             Search Donors

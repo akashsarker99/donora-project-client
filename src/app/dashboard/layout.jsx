@@ -163,7 +163,7 @@ const sidebarContent = (
             {user?.name}
           </h4>
 
-          <p className="text-xs capitalize text-[#FF7A7A]">
+          <p className="text-xs uppercase text-[#FF7A7A]">
             {user?.role || "donor"}
           </p>
         </div>

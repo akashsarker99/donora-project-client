@@ -78,7 +78,7 @@ const UserDropdown = () => {
 
           <div className="border-t border-gray-200 pt-1.5">
             <Link
-              href= {`${dashboardLinks[user?.role || "donor"]}`}
+              href= {`${dashboardLinks[user?.role || "donorDashboard"]}`}
               className="flex items-center gap-3 px-4 py-3 text-slate-600 transition-all duration-200 hover:bg-red-50 hover:text-[#C70000] rounded-2xl"
             >
               <LuLayoutDashboard className="text-lg" />

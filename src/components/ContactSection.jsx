@@ -38,7 +38,7 @@ const ContactSection = () => {
                 </p>
 
                 <p className="text-lg font-medium text-[#130505]">
-                  +880 1800-LIFEFLOW
+                  +880 1700 000 000
                 </p>
               </div>
             </div>
@@ -70,7 +70,7 @@ const ContactSection = () => {
                 </p>
 
                 <p className="text-lg font-medium text-[#130505]">
-                  Motijheel, Dhaka, Bangladesh
+                  Uttara, Dhaka, Bangladesh
                 </p>
               </div>
             </div>

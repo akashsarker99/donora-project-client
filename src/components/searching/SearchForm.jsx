@@ -50,7 +50,6 @@ const handleSearch = async (e) => {
   }
 };
 
-console.log("donors", donors)
 
     return (
         <div>
@@ -130,8 +129,7 @@ console.log("donors", donors)
     <div className="flex items-end">
       <Button
         type="submit"
-        color="danger"
-        className="h-12 w-full"
+        className="h-12 w-full bg-[#dc0505] text-base font-semibold text-white hover:bg-[#ac0000]"
       >
         <LuSearch size={18} />
         Search

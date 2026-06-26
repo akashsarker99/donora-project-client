@@ -29,7 +29,7 @@ const RequestDetails = ({ request, user }) => {
             </p>
 
             <span
-              className={`mt-5 inline-flex rounded-full px-4 py-2 text-sm font-semibold capitalize ${statusColors[request.requestStatus]}`}
+              className={`mt-5 uppercase inline-flex rounded-full px-4 py-2 text-sm font-semibold ${statusColors[request.requestStatus]}`}
             >
               {request.requestStatus}
             </span>

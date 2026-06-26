@@ -2,14 +2,14 @@ import { getMyDonationRequestsByEmail } from "@/lib/api/donationRequest";
 import { getUserSession } from "@/lib/core/session";
 import Link from "next/link";
 import { LuDroplets, LuPlus } from "react-icons/lu";
-import RecentRequestsTable from "./RecentRequestsTable";
+import RecentRequestsTable from "./RecentRequestTable";
 
 const DonorDashboard = async () => {
     const user = await getUserSession()
     const requests = await getMyDonationRequestsByEmail(user?.email);
   return (
     <div className="space-y-6 p-4 md:p-6">
-      <div className="rounded-3xl bg-linear-to-r from-[#ac0000] to-[#c70000] p-6 md:p-8 text-white">
+      <div className="rounded-3xl bg-linear-to-r from-[#c70000] to-[#ac0000] p-6 md:p-8 text-white">
         <p className="text-lg text-white/90">
           Welcome back,
         </p>
@@ -20,8 +20,8 @@ const DonorDashboard = async () => {
 
         <p className="mt-3 text-base">
           Donor Account · Status:
-          <span className="ml-1 font-medium text-green-300">
-            Active
+          <span className={`ml-1 font-medium  ${user?.status === 'active' ? "text-green-300" : "text-red-500"}`}>
+              {user?.status}
           </span>
         </p>
       </div>
