@@ -1,8 +1,10 @@
+import { getUserSession } from "@/lib/core/session";
 import Link from "next/link";
 import { FaDroplet, FaMagnifyingGlass } from "react-icons/fa6";
 import { MdBloodtype } from "react-icons/md";
 
-const Banner = () =>{
+const Banner = async () =>{
+  const user = await getUserSession()
   return (
     <section className="relative overflow-hidden">
 
@@ -31,17 +33,28 @@ const Banner = () =>{
             </p>
 
             <div className="mt-10 flex flex-wrap gap-5 justify-center sm:justify-start">
-               <Link href={'/register'}>
+               {
+                 user? (<Link href={'/donation-requests'}>
+                 <button className="flex items-center gap-3 rounded-2xl bg-white px-8 py-4 font-semibold text-[#DC2626] transition-all ease-in-out duration-300 hover:scale-105">
+                <FaDroplet />
+                 Donate Now
+              </button>
+               </Link>): (
+                <Link href={'/register'}>
                  <button className="flex items-center gap-3 rounded-2xl bg-white px-8 py-4 font-semibold text-[#DC2626] transition-all ease-in-out duration-300 hover:scale-105">
                 <FaDroplet />
                 Join as a Donor
               </button>
-
                </Link>
+               )
+               }
+
+              <Link href={'/searching'}>
               <button className="flex items-center gap-3 rounded-2xl border border-white/30 px-8 py-4 font-semibold text-white backdrop-blur transition hover:bg-[#A60000] hover:text-white hover:border-[#A60000]">
                 <FaMagnifyingGlass />
                 Search Donors
               </button>
+              </Link>
             </div>
 
             <div className="mt-12 flex flex-wrap gap-8 text-white justify-center sm:justify-start">

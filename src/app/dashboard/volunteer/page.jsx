@@ -1,7 +1,7 @@
 import StatsDashboard from '@/components/admin-volunteer/StatsDashboard';
 import React from 'react';
 
-const AdminDashboard = () => {
+const VolunteerDashboard = () => {
     return (
         <div>
             <StatsDashboard></StatsDashboard>
@@ -9,4 +9,4 @@ const AdminDashboard = () => {
     );
 };
 
-export default AdminDashboard;
+export default VolunteerDashboard;

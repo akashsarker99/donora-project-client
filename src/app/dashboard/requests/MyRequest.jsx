@@ -89,7 +89,7 @@ const handleDelete = async (id) => {
           ): (
              <div>
           <h1 className="font-logo text-3xl md:text-4xl text-[#130505]">
-             Public Donation Requests
+             All Donation Requests
           </h1>
 
           <p className="mt-2 text-gray-500">

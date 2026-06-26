@@ -61,12 +61,7 @@ const DashboardLayout = ({children}) => {
   {
     icon: LuGlobe,
     label: "Public Requests",
-    href: "/donation-requests",
-  },
-  {
-    icon: LuDroplets,
-    label: "All Blood Requests",
-    href: "/dashboard/volunteer/all-blood-requests",
+    href: "/dashboard/volunteer/public-requests",
   },
 ];
 const adminLinks = [

@@ -1,7 +1,7 @@
 import AllPublicRequest from '@/components/admin-volunteer/AllPublicRequest';
 import React from 'react';
 
-const PublicRequestsPageAdmin = async () => {
+const AllPublicRequestVolunteer = () => {
     return (
         <div>
             <AllPublicRequest></AllPublicRequest>
@@ -9,4 +9,4 @@ const PublicRequestsPageAdmin = async () => {
     );
 };
 
-export default PublicRequestsPageAdmin;
+export default AllPublicRequestVolunteer;
