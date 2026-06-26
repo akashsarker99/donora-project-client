@@ -8,10 +8,11 @@ import { LuLayoutDashboard, LuList, LuLogOut, LuPlus, LuDroplets, LuBadgeDollarS
 import { FaUser } from "react-icons/fa6";
 import { authClient } from "@/lib/auth-client";
 import { handleLogout } from "@/lib/core/logout";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const DashboardLayout = ({children}) => {
       const router = useRouter();
+      const pathname = usePathname()
  const {data: session} = authClient.useSession()
   const user = session?.user;
 
@@ -78,7 +79,7 @@ const adminLinks = [
   {
     icon: LuList,
     label: "My Requests",
-    href: "/dashboard//requests",
+    href: "/dashboard/requests",
   },
   {
     icon: LuPlus,
@@ -121,20 +122,20 @@ const sidebarContent = (
 
     <div className="flex-1 px-4 py-5">
       <nav className="space-y-2">
-        {navItems.map((item, index) => (
-          <Link
-            key={item.label}
-            href={item.href}
-            className={`flex items-center gap-3 rounded-2xl px-5 py-3 text-base font-medium transition-all duration-200 ${
-              index === 0
-                ? "bg-[#E00000] text-white"
-                : "text-white/90 hover:bg-[#730000]"
-            }`}
-          >
-            <item.icon size={18} />
-            <span>{item.label}</span>
-          </Link>
-        ))}
+       {navItems.map((item) => (
+  <Link
+    key={item.label}
+    href={item.href}
+    className={`flex items-center gap-3 rounded-2xl px-5 py-3 text-base font-medium transition-all duration-200 ${
+      pathname === item.href
+        ? "bg-[#E00000] text-white shadow-lg"
+        : "text-white/90 hover:bg-[#730000]"
+    }`}
+  >
+    <item.icon size={18} />
+    <span>{item.label}</span>
+  </Link>
+))}
       </nav>
     </div>
 

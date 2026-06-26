@@ -3,7 +3,7 @@ import { updateDonationRequest } from '@/lib/actions/donationRequest';
 import { Button, Form, Input, Label, Modal, TextField } from '@heroui/react';
 import { useRouter } from 'next/navigation';
 import React from 'react';
-import { LuHeart } from 'react-icons/lu';
+import { LuDroplets, LuHeart } from 'react-icons/lu';
 import { toast } from 'react-toastify';
 
 const DonateModal = ({request, user}) => {
@@ -35,7 +35,7 @@ const DonateModal = ({request, user}) => {
         <div>
           <Modal>
   <Button className="bg-[#DC2626] h-12 px-8 rounded-full text-lg text-white hover:bg-[#B91C1C]">
-   <LuHeart></LuHeart> Donate Now
+   <LuDroplets></LuDroplets> Donate Now
   </Button>
 
   <Modal.Backdrop>

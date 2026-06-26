@@ -5,10 +5,23 @@ import { Button } from "@heroui/react";
 import { LuDroplets } from "react-icons/lu";
 import { authClient } from "@/lib/auth-client";
 import UserDropdown from "./UserDropdown";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
+  const pathname = usePathname()
     const {data: session} = authClient.useSession()
   const user = session?.user;
+
+
+const activeClass = "rounded-full bg-red-50 px-5 py-2 font-medium text-[#DC2626]";
+
+const inactiveClass = "rounded-full px-6 py-2 font-medium text-gray-600 transition hover:text-[#DC2626]";
+  const navLinks = [
+  { label: "Home", href: "/" },
+  { label: "Donation Requests", href: "/donation-requests" },
+  ...(user ? [{ label: "Funding", href: "/funding" }] : []),
+  { label: "Search Donors", href: "/searching" },
+];
   
   return (
     <nav className="sticky top-0 z-50 border-b border-gray-100 bg-white/90 backdrop-blur-md">
@@ -25,38 +38,22 @@ const Navbar = () => {
           </h1>
         </Link>
 
-        <div className="hidden items-center gap-8 lg:flex">
-          <Link
-            href="/"
-            className="rounded-full bg-red-50 px-6 py-2 font-medium text-[#DC2626] transition"
-          >
-            Home
-          </Link>
-
-          <Link
-            href="/donation-requests"
-            className="font-medium text-gray-600 transition hover:text-[#DC2626]"
-          >
-            Donation Requests
-          </Link>
-
-         {
-          user &&  <Link
-            href="/funding"
-            className="font-medium text-gray-600 transition hover:text-[#DC2626]"
-          >
-            Funding
-          </Link>
-         }
-
-          <Link
-            href="/searching"
-            className="font-medium text-gray-600 transition hover:text-[#DC2626]"
-          >
-            Search Donors
-          </Link>
-        </div>
-
+       <div className="hidden items-center gap-4 lg:flex">
+  {navLinks.map((item) => (
+    <Link
+      key={item.href}
+      href={item.href}
+      className={
+        pathname === item.href ||
+        (item.href !== "/" && pathname.startsWith(item.href))
+          ? activeClass
+          : inactiveClass
+      }
+    >
+      {item.label}
+    </Link>
+  ))}
+</div>
        <div>
         {
           user ? (<UserDropdown></UserDropdown>) : 
