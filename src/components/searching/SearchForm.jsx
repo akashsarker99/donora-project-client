@@ -3,7 +3,6 @@ import { searchDonors } from '@/lib/api/user';
 import { Button, Form } from '@heroui/react';
 import React, { useState } from 'react';
 import { LuSearch } from 'react-icons/lu';
-import SearchCard from './SearchCard';
 import SearchResults from './SearchResults';
 
 const SearchForm = ({ bloodGroups, allUpazilas, districts }) => {

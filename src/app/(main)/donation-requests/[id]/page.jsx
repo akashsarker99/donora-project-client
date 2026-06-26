@@ -5,7 +5,6 @@ import { getUserSession } from "@/lib/core/session";
 
 const RequestDetailsPage = async ({params}) => {
     const { id } = await params;
-  console.log("Params: ", params);
   const request =await getDonationRequestById(id);
 
   const user = await getUserSession();
