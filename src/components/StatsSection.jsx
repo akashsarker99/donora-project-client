@@ -4,19 +4,11 @@ import {
 } from "react-icons/lu";
 
 import { RiExchangeFundsLine } from "react-icons/ri";
-import { getAllUsers } from "@/lib/api/user";
-import { getAllDonationRequests } from "@/lib/api/donationRequest";
-import { getPayments } from "@/lib/api/payments";
 import StatsCard from "./StatsCard";
+import { getStats } from "@/lib/api/stats";
 
 const StatsSection = async () => {
-     const users = await getAllUsers();
-      const requests = await getAllDonationRequests();
-      const payments = await getPayments();
-
-     const totalDonors = users.filter(user => user.role === "donor").length;
-     const totalFunding = payments.reduce((total, payment) => total + Number(payment.amount), 0);
-     const activeRequests = requests.filter(request => request.requestStatus === "inprogress").length;
+     const stats = await getStats();
   return (
     <section className="bg-linear-to-t from-[#700101] to-[#c70000] py-13">
       <div className="mx-auto container px-4">
@@ -24,21 +16,21 @@ const StatsSection = async () => {
 
           <StatsCard
             icon={LuUsers}
-            value={(totalDonors ?? 0).toLocaleString()}
+            value={(stats.totalDonors ?? 0).toLocaleString()}
             title="Registered Donors"
             subtitle="Available to donate"
           />
 
           <StatsCard
             icon={RiExchangeFundsLine}
-            value={`${(totalFunding ?? 0).toLocaleString()} Tk`}
+            value={`${(stats.totalFunding ?? 0).toLocaleString()} Tk`}
             title="Total Funding"
             subtitle="Raised by our community"
           />
 
           <StatsCard
             icon={LuActivity}
-            value={activeRequests ?? 0}
+            value={stats.activeRequests ?? 0}
             title="Active Requests"
             subtitle="Awaiting donors"
           />

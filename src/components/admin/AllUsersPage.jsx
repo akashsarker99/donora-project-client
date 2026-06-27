@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import Image from "next/image";
 import { LuUsers } from "react-icons/lu";
 import UserActionMenu from "./UserActionMenu";
-import { Avatar, Chip } from "@heroui/react";
+import { Chip } from "@heroui/react";
 
 
 const roleColor = {
@@ -21,8 +21,7 @@ export default function AllUsersPage({ users }) {
 
     return users.filter(
       (user) =>
-        user.status?.toLowerCase() ===
-        statusFilter.toLowerCase()
+        user.status?.toLowerCase() === statusFilter.toLowerCase()
     );
   }, [users, statusFilter]);
 
