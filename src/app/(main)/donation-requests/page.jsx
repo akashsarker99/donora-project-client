@@ -1,18 +1,28 @@
 import RequestBanner from '@/components/donation-request/RequestBanner';
 import FeaturedCard from '@/components/FeatureCard';
-import { getDonationRequests } from '@/lib/api/donationRequest';
+import { donationRequestsPage } from '@/lib/api/donationRequest';
 import { getUserSession } from '@/lib/core/session';
+import { Pagination, Table } from '@heroui/react';
 import Link from 'next/link';
 import React from 'react';
 import { LuDroplets, LuPlus } from 'react-icons/lu';
 
 
 
-const DonationRequestPage = async () => {
+const DonationRequestPage = async ({searchParams}) => {
+  const {page=1} = await searchParams;
   const user = await getUserSession();
-  const requests = await getDonationRequests();
+  const requestsData = await donationRequestsPage(page);
+  const requests = requestsData.data;
+  const pageNumber = requestsData.pageNumber;
+  const totalPages = requestsData.totalPages;
+  const pages = [];
+  for (let i = 1; i <= totalPages; i++) {
+    pages.push(i);
+  }
+
     return (
-        <div className="space-y-6 p-4 md:p-6">
+        <div className="space-y-4 p-4 md:p-6">
             <RequestBanner></RequestBanner>
 
             <div>
@@ -52,7 +62,47 @@ const DonationRequestPage = async () => {
     </div>
      )
    }
+
        </div>
+
+     <div className="flex justify-center mb-8">
+        <Table.Footer>
+        <Pagination size="lg">
+          <Pagination.Content>
+            <Pagination.Item>
+              <Pagination.Previous
+                isDisabled={pageNumber === 1}
+          
+              >
+                <Link className="flex gap-2" href={`/donation-requests?page=${pageNumber-1}`}>
+                <Pagination.PreviousIcon />
+                Prev</Link>
+              </Pagination.Previous>
+            </Pagination.Item>
+
+            {pages.map((p) => (
+              <Pagination.Item key={p}>
+               <Link href={`/donation-requests?page=${p}`}>
+                <Pagination.Link className={`${p===pageNumber && 'bg-red-500 text-white'}`} isActive={p === pageNumber}>
+                  {p}
+                </Pagination.Link>
+               </Link>
+              </Pagination.Item>
+            ))}
+            <Pagination.Item>
+              <Pagination.Next
+                isDisabled={pageNumber === totalPages}
+              >
+                  <Link className="flex gap-2 text-red-500" href={`/donation-requests?page=${pageNumber+1}`}>
+                Next
+                <Pagination.NextIcon />
+                </Link>
+              </Pagination.Next>
+            </Pagination.Item>
+          </Pagination.Content>
+        </Pagination>
+      </Table.Footer>
+     </div>
         </div>
     );
 };

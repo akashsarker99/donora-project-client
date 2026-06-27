@@ -8,6 +8,10 @@ export const getAllUsers = async () => {
     return await serverFetch('/users');
 }
 
+export const getAllUsersByPage = async (page) => {
+    return await serverFetch(`/alluserpage?page=${page}`);
+}
+
 export const searchDonors = async ({bloodGroup, district, upazila}) => {
   const params = new URLSearchParams();
   if (bloodGroup) params.append("bloodGroup", bloodGroup);

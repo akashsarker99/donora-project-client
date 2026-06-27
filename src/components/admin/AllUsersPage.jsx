@@ -4,7 +4,9 @@ import { useMemo, useState } from "react";
 import Image from "next/image";
 import { LuUsers } from "react-icons/lu";
 import UserActionMenu from "./UserActionMenu";
-import { Chip } from "@heroui/react";
+import { Chip, Pagination } from "@heroui/react";
+import PaginationComponent from "../PaginationComponent";
+import { usePathname } from "next/navigation";
 
 
 const roleColor = {
@@ -13,9 +15,9 @@ const roleColor = {
   admin: "secondary",
 };
 
-export default function AllUsersPage({ users }) {
+export default function AllUsersPage({ users , pageNumber, totalPages, pages }) {
   const [statusFilter, setStatusFilter] = useState("all");
-
+ const pathName = usePathname();
   const filteredUsers = useMemo(() => {
     if (statusFilter === "all") return users;
 
@@ -279,6 +281,11 @@ export default function AllUsersPage({ users }) {
           </div>
         </>
       )}
+
+      <div className="flex justify-center my-8">
+        <PaginationComponent pageNumber={pageNumber} 
+        totalPages={totalPages} pages={pages} pathName={pathName}></PaginationComponent>
+      </div>
     </section>
   );
 }

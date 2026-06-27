@@ -1,15 +1,14 @@
 import Link from 'next/link';
 import React from 'react';
 import { LuDroplets, LuPlus } from 'react-icons/lu';
-import { getAllDonationRequests } from '@/lib/api/donationRequest';
 import MyRequestsPage from '@/app/dashboard/requests/MyRequest';
 
 
-const AllPublicRequest = async () => {
-    const requests = await getAllDonationRequests();
+const AllPublicRequest = async ({requests, pages, pageNumber, totalPages}) => {
     return (
         <div>
-                 <MyRequestsPage requests={requests}></MyRequestsPage>
+                 <MyRequestsPage requests={requests} pageNumber={pageNumber} 
+                 totalPages={totalPages} pages={pages}></MyRequestsPage>
             {requests.length === 0 && (
         <div className="flex min-h-[320px] flex-col items-center justify-center rounded-3xl bg-white p-6 text-center shadow-sm">
           <LuDroplets className="mb-4 text-5xl text-red-200" />

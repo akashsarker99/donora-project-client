@@ -48,7 +48,7 @@ const StatsDashboard = async () => {
 
         <p className="mt-3 text-base">
           Donor Account · Status:
-         <span className={`ml-1 font-medium uppercase ${userRole?.status === 'active' ? "text-green-300" : "bg-red-500 shadow-2xl rounded-2xl px-3 py-1 text-white"}`}>
+         <span className={`ml-1 font-medium capitalize ${userRole?.status === 'active' ? "text-green-300" : "bg-red-500 shadow-2xl rounded-2xl px-3 py-1 text-white"}`}>
               {userRole?.status}
           </span>
         </p>

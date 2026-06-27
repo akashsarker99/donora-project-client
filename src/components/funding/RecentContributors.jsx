@@ -22,7 +22,7 @@ const RecentContributors = async () => {
 
         <FundModal></FundModal>
       </div>
-      <div className="overflow-hidden rounded-3xl bg-white shadow-sm">
+      <div className="overflow-hidden rounded-3xl bg-white shadow-sm mb-10">
         <table className="w-full">
           <thead className="border-b border-gray-100">
             <tr>

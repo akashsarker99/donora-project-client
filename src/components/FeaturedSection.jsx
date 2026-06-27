@@ -1,10 +1,11 @@
 import Link from "next/link";
 import FeaturedCard from "./FeatureCard";
-import { getAllDonationRequests } from "@/lib/api/donationRequest";
 import { FaArrowRightLong } from "react-icons/fa6";
+import { getAllDonationRequests } from "@/lib/api/donationRequest";
 
 const FeaturedSection = async () => {
     const requestData = await getAllDonationRequests();
+    console.log(requestData)
     const requests = [...requestData].filter(request => request.requestStatus === "pending").slice(-6)
   return (
     <section className="py-18">

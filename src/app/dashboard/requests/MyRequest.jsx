@@ -1,7 +1,9 @@
 "use client";
 
+import PaginationComponent from "@/components/PaginationComponent";
 import { deleteDonationRequest } from "@/lib/actions/deleteDonation";
 import { updateDonationRequest } from "@/lib/actions/donationRequest";
+import { Pagination, Table } from "@heroui/react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
@@ -26,15 +28,12 @@ const statusStyles = {
     "bg-gray-100 text-gray-600 border-gray-200",
 };
 
-const MyRequestsPage = ({requests}) => {
+const MyRequestsPage = ({requests, pageNumber, totalPages, pages}) => {
   const pathName = usePathname();
     const router = useRouter();
   const [statusFilter, setStatusFilter] = useState("all");
 
- const filteredRequests =
-  statusFilter === "all"
-    ? requests || []
-    : (requests || []).filter(
+ const filteredRequests = statusFilter === "all" ? requests || [] : (requests || []).filter(
         request =>
           request.requestStatus === statusFilter
       );
@@ -73,7 +72,7 @@ const handleDelete = async (id) => {
     <section className="mx-auto my-8 max-w-7xl px-4 md:px-6">
       <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         {
-          pathName !== '/dashboard/admin/public-requests' ? (
+          pathName === "/dashboard/requests" ? (
              <div>
           <h1 className="font-logo text-3xl md:text-4xl text-[#130505]">
             My Donation Requests
@@ -356,6 +355,14 @@ const handleDelete = async (id) => {
     </div>
   ))}
 </div>
+
+    {
+      pathName !== '/dashboard/admin/public-requests' || '/dashboard/volunteer/public-requests' && (
+          <div className="flex justify-center my-8">
+       <PaginationComponent pathName={pathName} pageNumber={pageNumber} totalPages={totalPages} pages={pages}></PaginationComponent>
+     </div>
+      )
+    }
     </section>
   );
 };

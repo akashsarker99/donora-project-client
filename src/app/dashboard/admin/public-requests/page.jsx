@@ -1,10 +1,21 @@
 import AllPublicRequest from '@/components/admin-volunteer/AllPublicRequest';
+import {getAllDonationRequestsByPage, } from '@/lib/api/donationRequest';
 import React from 'react';
 
-const PublicRequestsPageAdmin = async () => {
+const PublicRequestsPageAdmin = async ({searchParams}) => {
+      const {page=1} = await searchParams;
+    const requests = await getAllDonationRequestsByPage(page);
+    console.log(requests)
+    const pageNumber = requests.pageNumber;
+    const totalPages = requests.totalPages;
+    const pages = [];
+    for (let i = 1; i <= totalPages; i++) {
+      pages.push(i);
+    }
     return (
         <div>
-            <AllPublicRequest></AllPublicRequest>
+            <AllPublicRequest requests={requests.data} 
+            pages={pages} pageNumber={pageNumber} totalPages={totalPages} ></AllPublicRequest>
         </div>
     );
 };

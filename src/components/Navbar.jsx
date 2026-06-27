@@ -38,7 +38,7 @@ const inactiveClass = "rounded-full px-6 py-2 font-medium text-gray-600 transiti
           </h1>
         </Link>
 
-       <div className="hidden items-center gap-4 lg:flex">
+       <div className="hidden items-center gap-3 lg:flex">
   {navLinks.map((item) => (
     <Link
       key={item.href}
