@@ -5,7 +5,6 @@ import Image from "next/image";
 
 const RecentContributors = async () => {
   const donations = await getPayments();
-  console.log(donations);
 
   return (
     <div>
@@ -23,7 +22,8 @@ const RecentContributors = async () => {
         <FundModal></FundModal>
       </div>
       <div className="overflow-hidden rounded-3xl bg-white shadow-sm mb-10">
-        <table className="w-full">
+         <div className="overflow-x-auto">
+        <table className="min-w-[600px] w-full">
           <thead className="border-b border-gray-100">
             <tr>
               <th className="px-6 py-4 text-left text-sm">Donor</th>
@@ -70,6 +70,7 @@ const RecentContributors = async () => {
             ))}
           </tbody>
         </table>
+      </div>
       </div>
     </div>
   );
