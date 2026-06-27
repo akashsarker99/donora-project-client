@@ -36,7 +36,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="grid min-h-screen lg:grid-cols-[40%_60%]">
+    <div className="grid my-10 sm:my-0 sm:min-h-screen lg:grid-cols-[40%_60%]">
       
       <div className="hidden lg:flex flex-col justify-center items-center bg-linear-to-br from-[#320c0c] to-[#8f0000] text-white px-12 relative overflow-hidden">
   <div className="relative z-10 max-w-md">

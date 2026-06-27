@@ -62,14 +62,14 @@ const UserDropdown = () => {
             <div className="flex items-center gap-3">
 
              <Link
-  href={`/profile/${user.id}`}
+  href={`/dashboard/profile`}
   className="block w-full rounded-xl p-3 transition-all duration-200 hover:bg-red-50"
 >
   <h3 className="font-semibold text-slate-800 transition-colors duration-200 hover:text-[#C70000]">
     {user.name}
   </h3>
 
-  <span className="mt-1 inline-block rounded-full border capitalize border-red-200 bg-red-50 px-3 py-1 text-xs font-medium text-[#DC2626]">
+  <span className="mt-1 inline-block rounded-full border uppercase border-red-200 bg-red-50 px-3 py-1 text-xs font-medium text-[#DC2626]">
     {user.role || "Donor"}
   </span>
 </Link>
@@ -83,6 +83,14 @@ const UserDropdown = () => {
             >
               <LuLayoutDashboard className="text-lg" />
               Dashboard
+            </Link>
+
+             <Link
+              href= {`${dashboardLinks[user?.role || "donorDashboard"]}`}
+              className="flex items-center gap-3 px-4 py-3 text-slate-600 transition-all duration-200 hover:bg-red-50 hover:text-[#C70000] rounded-2xl"
+            >
+              <LuLayoutDashboard className="text-lg" />
+               Give Fund
             </Link>
 
             <button onClick={()=>handleLogout(router)}

@@ -81,7 +81,7 @@ export default function ProfilePage() {
               </div>
 
               <div>
-                <h1 className="font-logo text-4xl">{user?.name}</h1>
+                <h1 className="font-logo text-2xl sm:text-4xl">{user?.name}</h1>
 
                 <p className="mt-2 text-red-100">{user?.email}</p>
 

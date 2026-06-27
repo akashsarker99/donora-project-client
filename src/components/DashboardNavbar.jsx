@@ -3,14 +3,17 @@
 import { authClient } from "@/lib/auth-client";
 import Image from "next/image";
 import DashboardMobileSidebar from "./DashboardMobileSidebar";
+import { usePathname } from "next/navigation";
 
 const DashboardNavbar = ({sidebarContent}) => {
+  const pathname = usePathname();
+  console.log(pathname)
   const { data: session } = authClient.useSession();
   const user = session?.user;
   return (
     <header className=" flex h-20 items-center justify-between border-b border-gray-100 bg-white px-6">
       
-      <h1 className="text-xl font-bold text-[#130505] flex items-center">
+      <h1 className="text-lg sm:text-xl font-semibold text-[#130505] flex items-center">
          <div>
         <DashboardMobileSidebar sidebarContent={sidebarContent}></DashboardMobileSidebar>
        </div>
@@ -18,7 +21,7 @@ const DashboardNavbar = ({sidebarContent}) => {
       </h1>
 
       <div className="flex items-center gap-4">
-        <span className="rounded-full border uppercase border-red-200 bg-red-50 px-4 py-1 text-md font-semibold text-[#DC2626]">
+        <span className="rounded-full border uppercase border-red-200 bg-red-50 text-xs sm:px-4 px-3 py-1 sm:text-md font-semibold text-[#DC2626]">
           {user?.role || "Donor"}
         </span>
 

@@ -1,19 +1,20 @@
 'use client'
 
-import { LayoutSideContentLeft } from "@gravity-ui/icons";
 import { Button, Drawer } from "@heroui/react";
+import { RiSideBarFill } from "react-icons/ri";
 
 const DashboardMobileSidebar = ({sidebarContent}) => {
    
     return (
         <div>
-            <div className="lg:hidden ">
+            <div className="lg:hidden">
   <Drawer>
     <Button
       isIconOnly
-      className="m-3 bg-[#c70000] text-white"
+      variant="ghost"
+      className="mr-2 text-red-600 hover:bg-red-500 hover:text-white text-5xl"
     >
-      <LayoutSideContentLeft />
+      <RiSideBarFill />
     </Button>
 
     <Drawer.Backdrop>

@@ -188,7 +188,7 @@ const handleDelete = async (id) => {
 
           <td className="px-4 py-4">
             <span
-              className={`inline-flex min-w-[110px] justify-center rounded-full border px-3 py-1 text-sm font-medium capitalize ${
+              className={`inline-flex min-w-[110px] justify-center rounded-full border px-3 py-1 text-sm font-medium uppercase ${
                 statusStyles[request.requestStatus]
               }`}
             >
@@ -285,7 +285,7 @@ const handleDelete = async (id) => {
         </p>
 
         <span
-          className={`rounded-full border px-3 py-1 text-xs font-medium capitalize ${
+          className={`rounded-full border px-3 py-1 text-xs font-medium uppercase ${
             statusStyles[request.requestStatus]
           }`}
         >
@@ -357,7 +357,7 @@ const handleDelete = async (id) => {
 </div>
 
     {
-      pathName !== '/dashboard/admin/public-requests' || '/dashboard/volunteer/public-requests' && (
+      pathName !== "/dashboard/requests" && (
           <div className="flex justify-center my-8">
        <PaginationComponent pathName={pathName} pageNumber={pageNumber} totalPages={totalPages} pages={pages}></PaginationComponent>
      </div>

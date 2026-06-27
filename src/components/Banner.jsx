@@ -16,7 +16,7 @@ const Banner = async () =>{
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <div className="text-center sm:text-left">
 
-            <div className="mb-3 inline-flex gap-2 rounded-full border border-red-400/20 bg-white/5 px-5 py-2 text-white backdrop-blur">
+            <div className="mb-3 inline-flex gap-2 rounded-full border border-red-400/20 bg-white/5 text-sm px-4 py-1 sm:px-5 sm:py-2 sm:text-base items-center text-white backdrop-blur">
              <MdBloodtype className="text-2xl" ></MdBloodtype>
               <span>Bangladesh's Blood Donation Network</span>
             </div>

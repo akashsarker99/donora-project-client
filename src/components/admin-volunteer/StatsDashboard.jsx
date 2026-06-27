@@ -12,6 +12,7 @@ const StatsDashboard = async () => {
     const requests = await getAllDonationRequests();
     const payments = await getPayments();
      const userRole = await getUserByEmail(user?.email);
+     console.log(userRole)
     const stats = [
   {
     title: "Total Users",
@@ -37,7 +38,7 @@ const StatsDashboard = async () => {
 ];
     return (
         <div className="space-y-6 p-4 md:p-6">
-            <div className="rounded-3xl bg-linear-to-r from-[#ac0000] to-[#c70000] p-6 md:p-8 text-white">
+            <div className="rounded-3xl bg-linear-to-r from-[#c70000] to-[#ac0000] p-6 md:p-8 text-white">
         <p className="text-lg text-white/90">
           Welcome back,
         </p>
@@ -46,8 +47,8 @@ const StatsDashboard = async () => {
           {user?.name}!
         </h2>
 
-        <p className="mt-3 text-base">
-          Donor Account · Status:
+        <p className="mt-3 text-base capitalize">
+          {userRole?.role} Account · Status:
          <span className={`ml-1 font-medium capitalize ${userRole?.status === 'active' ? "text-green-300" : "bg-red-500 shadow-2xl rounded-2xl px-3 py-1 text-white"}`}>
               {userRole?.status}
           </span>
