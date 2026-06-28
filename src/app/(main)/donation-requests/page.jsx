@@ -14,6 +14,7 @@ const DonationRequestPage = async ({searchParams}) => {
   const user = await getUserSession();
   const requestsData = await donationRequestsPage(page);
   const requests = requestsData.data;
+  console.log("Requests:", requests);
   const pageNumber = requestsData.pageNumber;
   const totalPages = requestsData.totalPages;
   const pages = [];

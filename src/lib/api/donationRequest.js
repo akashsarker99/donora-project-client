@@ -8,7 +8,8 @@ export const getMyDonationRequestsByEmail = async (email) => {
 };
 
 export const getAllDonationRequests = async () => {
-  return await serverFetch('/request');
+  const requests = await serverFetch('/request');
+  return requests;
 }
 
 export const donationRequestsPage = async (page)=>{

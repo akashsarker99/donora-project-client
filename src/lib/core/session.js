@@ -6,9 +6,21 @@ export const getUserSession = async() =>{
     const session = await auth.api.getSession({
         headers: await headers(),
     })
+    getTokenServer()
     return session?.user || null;
 }
 
+export const getTokenServer = async () => {
+   try {
+    const { token } = await auth.api.getToken({
+      headers: await headers(),
+    });
+
+    return token ?? null;
+  } catch (error) {
+    return null;
+  }
+};
 export const requireRole = async (role) => {
     const user = await getUserSession();
     if(!user){

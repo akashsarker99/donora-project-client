@@ -12,7 +12,6 @@ const StatsDashboard = async () => {
     const requests = await getAllDonationRequests();
     const payments = await getPayments();
      const userRole = await getUserByEmail(user?.email);
-     console.log(userRole)
     const stats = [
   {
     title: "Total Users",
