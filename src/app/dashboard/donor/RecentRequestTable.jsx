@@ -1,4 +1,5 @@
 'use client'
+import DeleteModal from "@/components/DeleteModal";
 import { deleteDonationRequest } from "@/lib/actions/deleteDonation";
 import { updateDonationRequest } from "@/lib/actions/donationRequest";
 import Link from "next/link";
@@ -38,12 +39,6 @@ const RecentRequestsTable = ({requests}) => {
   };
 
 const handleDelete = async (id) => {
-  const confirmed = window.confirm(
-    "Are you sure you want to delete this request?"
-  );
-
-  if (!confirmed) return;
-
   try {
     await deleteDonationRequest(id);
     toast.success("Request deleted successfully");
@@ -58,7 +53,7 @@ const handleDelete = async (id) => {
 
   return (
     <div>
-      <div className="flex items-center justify-between border-b border-gray-100 px-6 py-5">
+      <div className="flex sm:items-center gap-7 justify-between flex-col sm:flex-row border-b border-gray-100 px-6 py-5">
         <div>
           <h2 className="text-2xl font-bold text-[#130505]">
             Recent Requests
@@ -69,11 +64,15 @@ const handleDelete = async (id) => {
           </p>
         </div>
 
-        <Link
+       {
+        filteredRequests.length !== 0 && (
+           <Link
           href="/dashboard/requests"
         >
           <span className="rounded-full bg-red-600 px-6 py-2 font-semibold text-white transition hover:bg-red-700">View All</span>
         </Link>
+        )
+       }
       </div>
      <div className="hidden md:block overflow-x-auto rounded-3xl border border-gray-100 bg-white shadow-sm">
   <table className="w-full">
@@ -132,7 +131,7 @@ const handleDelete = async (id) => {
 
           <td className="px-4 py-4">
             <span
-              className={`inline-flex min-w-[110px] justify-center rounded-full border px-3 py-1 text-sm font-medium capitalize ${
+              className={`inline-flex min-w-[110px] justify-center rounded-full border px-3 py-1 text-sm font-medium uppercase ${
                 statusStyles[request.requestStatus]
               }`}
             >
@@ -152,18 +151,13 @@ const handleDelete = async (id) => {
     {request.requestStatus === "pending" && (
       <>
         <Link
-          href={`/dashboard/my-requests/edit/${request._id}`}
+          href={`/dashboard/edit-request/${request._id}`}
           className="rounded-lg p-2 text-green-600 hover:bg-green-50"
         >
           <LuPencil size={18} />
         </Link>
 
-        <button
-          onClick={() => handleDelete(request._id)}
-          className="rounded-lg p-2 text-red-600 hover:bg-red-50"
-        >
-          <LuTrash2 size={18} />
-        </button>
+         <DeleteModal request={request} handleDelete={handleDelete}></DeleteModal>
       </>
     )}
 
@@ -229,7 +223,7 @@ const handleDelete = async (id) => {
         </p>
 
         <span
-          className={`rounded-full border px-3 py-1 text-xs font-medium capitalize ${
+          className={`rounded-full border px-3 py-1 text-xs font-medium uppercase ${
             statusStyles[request.requestStatus]
           }`}
         >
@@ -246,26 +240,25 @@ const handleDelete = async (id) => {
       <div className="mt-4 flex items-center gap-2">
         <Link
           href={`/donation-requests/${request._id}`}
-          className="flex-1 rounded-xl bg-blue-50 py-2 text-center text-blue-600"
+          className="flex-1 flex justify-center py-3 rounded-xl bg-blue-50  text-center text-blue-600"
         >
-          View
+          <LuEye/>
         </Link>
 
         {request.requestStatus === "pending" && (
           <>
             <Link
               href={`/dashboard/my-requests/edit/${request._id}`}
-              className="flex-1 rounded-xl bg-green-50 py-2 text-center text-green-600"
+              className="flex-1 flex rounded-xl bg-green-50 py-3 justify-center text-green-600"
             >
-              Edit
+              <LuPencil></LuPencil>
             </Link>
 
-            <button
-              onClick={() => handleDelete(request._id)}
-              className="flex-1 rounded-xl bg-red-50 py-2 text-red-600"
+            <span
+              className="flex-1 flex jusclify-center rounded-xl bg-red-50 cursor-pointer text-red-600 "
             >
-              Delete
-            </button>
+                <DeleteModal request={request} handleDelete={handleDelete}></DeleteModal>
+            </span>
           </>
         )}
 
@@ -288,12 +281,12 @@ const handleDelete = async (id) => {
 )}
 {(request.requestStatus === "done" ||
   request.requestStatus === "cancelled") && (
-  <button
+  <span
     onClick={() => handleDelete(request._id)}
-    className="flex-1 rounded-xl bg-red-50 py-2 text-red-600"
+    className="flex-1 flex justify-center rounded-xl bg-red-50 py-2 text-red-600"
   >
-    Delete
-  </button>
+   <LuTrash2 />
+  </span>
 )}
       </div>
     </div>

@@ -9,6 +9,7 @@ import { FaUser } from "react-icons/fa6";
 import { authClient } from "@/lib/auth-client";
 import { handleLogout } from "@/lib/core/logout";
 import { usePathname, useRouter } from "next/navigation";
+import { Button } from '@heroui/react';
 
 const DashboardLayout = ({children}) => {
       const router = useRouter();
@@ -139,10 +140,10 @@ const sidebarContent = (
       </nav>
     </div>
 
-    <div className="border-t border-white/10 p-4">
-      <Link
-        href="/dashboard/profile"
-        className="mb-4 flex items-center gap-3 rounded-2xl bg-[#730000] p-3 transition-all duration-200 hover:bg-[#850000]"
+    <div className="border-t border-white/10 p-4 space-y-2.5 mb-6">
+        
+      <div
+        className=" flex items-center gap-3 rounded-2xl bg-[#730000] p-3 transition-all duration-200 hover:bg-[#850000]"
       >
         {user?.image ? (
           <div className="relative h-10 w-10 overflow-hidden rounded-full">
@@ -168,12 +169,13 @@ const sidebarContent = (
             {user?.role || "donor"}
           </p>
         </div>
-      </Link>
+      </div>
 
-      <button onClick={()=>handleLogout(router)} className="flex w-full items-center gap-3 rounded-xl px-3 py-2 text-base text-[#FF7A7A] transition-all duration-200 hover:bg-[#730000] hover:text-white">
+      <Button variant='ghost' onClick={()=>handleLogout(router)} className="flex w-full items-center gap-3 rounded-xl px-3 py-6 text-base text-[#f79e9e] transition-all duration-200 hover:bg-[#730000] hover:text-white bg-red-50/10">
         <LuLogOut size={18} />
         Logout
-      </button>
+      </Button>
+
     </div>
   </div>
 );
@@ -183,7 +185,8 @@ const sidebarContent = (
              <DashboardSidebar sidebarContent={sidebarContent}></DashboardSidebar>
             <div className='flex-1'>
                 <DashboardNavbar sidebarContent={sidebarContent}></DashboardNavbar>
-                {children}</div>
+                <div>{children}</div>
+                </div>
         </div>
         </div>
     );

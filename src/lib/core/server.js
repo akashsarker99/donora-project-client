@@ -4,6 +4,7 @@
 const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 
 export const serverFetch = async( path) =>{
+      console.log("Fetching:", path);
     const res = await fetch(`${baseUrl}${path}`);
     return res.json();
 }

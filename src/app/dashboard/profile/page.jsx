@@ -59,7 +59,7 @@ export default function ProfilePage() {
   const avatarInitial = user?.name?.charAt(0).toUpperCase() || "";
 
   return (
-    <div className="mx-7">
+    <div className="mx-5">
       <div className="mx-auto max-w-5xl m-7 ">
       <div className="overflow-hidden rounded-3xl bg-white shadow-sm">
         <div className="bg-linear-to-r from-[#DC2626] to-[#B91C1C] px-8 py-10 text-white">

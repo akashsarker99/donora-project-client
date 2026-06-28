@@ -6,8 +6,11 @@ import {
   LuHouse,
   LuArrowLeft,
 } from "react-icons/lu";
+import { useRouter } from "next/navigation";
+
 
 const NotFound = () => {
+  const router = useRouter();
   return (
     <section className="flex min-h-screen items-center justify-center bg-gray-50 px-4 py-16">
       <div className="w-full max-w-2xl rounded-[32px] border border-gray-200 bg-white p-10 text-center shadow-sm">

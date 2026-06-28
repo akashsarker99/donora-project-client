@@ -7,7 +7,6 @@ import { usePathname } from "next/navigation";
 
 const DashboardNavbar = ({sidebarContent}) => {
   const pathname = usePathname();
-  console.log(pathname)
   const { data: session } = authClient.useSession();
   const user = session?.user;
   return (

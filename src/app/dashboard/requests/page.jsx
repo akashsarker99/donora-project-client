@@ -32,7 +32,7 @@ const RequestShow = async () => {
           </p>
 
           <Link
-            href="/dashboardc/create-request"
+            href="/dashboard/create-request"
             className="mt-6 flex items-center gap-2 rounded-full bg-[#C70000] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#A60000]"
           >
             <LuPlus size={18} />

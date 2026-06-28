@@ -10,7 +10,7 @@ import { getStats } from "@/lib/api/stats";
 const StatsSection = async () => {
      const stats = await getStats();
   return (
-    <section className="bg-linear-to-t from-[#700101] to-[#c70000] py-13">
+    <section className="bg-linear-to-t from-[#5B0000] to-[#A30000] py-13">
       <div className="mx-auto container px-4">
         <div className="grid gap-8 lg:grid-cols-3">
 

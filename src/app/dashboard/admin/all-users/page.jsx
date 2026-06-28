@@ -1,14 +1,15 @@
 
 import AllUsersPage from "@/components/admin/AllUsersPage";
-import { getAllUsers, getAllUsersByPage } from "@/lib/api/user";
+import { getAllUsersByPage } from "@/lib/api/user";
+
 
 
 export const metadata = {
   title: "All Users | Donora",
 };
 
-const Page = async (searchParams) => {
-  const {page} = await searchParams;
+const Page = async ({searchParams}) => {
+  const {page = 1} = await searchParams;
   const usersData = await getAllUsersByPage(page);
   const users = usersData.data;
   const pageNumber = usersData.pageNumber;
@@ -20,7 +21,7 @@ const Page = async (searchParams) => {
 
   return (
     <div className="p-4 md:p-6">
-      <AllUsersPage users={users || []}
+      <AllUsersPage users={users}
         pageNumber={pageNumber}
         totalPages={totalPages} pages={pages}
       />

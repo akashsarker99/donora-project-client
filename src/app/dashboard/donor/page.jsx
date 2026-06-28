@@ -3,9 +3,11 @@ import { getUserSession } from "@/lib/core/session";
 import Link from "next/link";
 import { LuDroplets, LuPlus } from "react-icons/lu";
 import RecentRequestsTable from "./RecentRequestTable";
+import { getUserByEmail } from "@/lib/api/user";
 
 const DonorDashboard = async () => {
     const user = await getUserSession()
+    const userRole = await getUserByEmail(user?.email);
     const requests = await getMyDonationRequestsByEmail(user?.email);
   return (
     <div className="space-y-6 p-4 md:p-6">
@@ -20,8 +22,8 @@ const DonorDashboard = async () => {
 
         <p className="mt-3 text-base">
           Donor Account · Status:
-          <span className={`ml-1 font-medium  ${user?.status === 'active' ? "text-green-300" : "text-red-500"}`}>
-              {user?.status}
+          <span className={`ml-1 capitalize font-medium  ${userRole?.status === 'active' ? "text-green-300" : "text-red-500"}`}>
+              {userRole?.status}
           </span>
         </p>
       </div>

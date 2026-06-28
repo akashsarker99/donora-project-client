@@ -1,9 +1,9 @@
 "use client";
 
+import DeleteModal from "@/components/DeleteModal";
 import PaginationComponent from "@/components/PaginationComponent";
 import { deleteDonationRequest } from "@/lib/actions/deleteDonation";
 import { updateDonationRequest } from "@/lib/actions/donationRequest";
-import { Pagination, Table } from "@heroui/react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
@@ -29,6 +29,7 @@ const statusStyles = {
 };
 
 const MyRequestsPage = ({requests, pageNumber, totalPages, pages}) => {
+
   const pathName = usePathname();
     const router = useRouter();
   const [statusFilter, setStatusFilter] = useState("all");
@@ -49,12 +50,6 @@ const handleCancel = async (id) => {
 };
 
 const handleDelete = async (id) => {
-  const confirmed = window.confirm(
-    "Are you sure you want to delete this request?"
-  );
-
-  if (!confirmed) return;
-
   try {
     const result = await deleteDonationRequest(id);
     console.log(result)
@@ -214,12 +209,7 @@ const handleDelete = async (id) => {
           <LuPencil size={18} />
         </Link>
 
-        <button
-          onClick={() => handleDelete(request._id)}
-          className="rounded-lg p-2 text-red-600 hover:bg-red-50"
-        >
-          <LuTrash2 size={18} />
-        </button>
+       <DeleteModal request={request} handleDelete={handleDelete}></DeleteModal>
       </>
     )}
 
@@ -299,32 +289,32 @@ const handleDelete = async (id) => {
         </p>
       )}
 
-      <div className="mt-4 flex items-center gap-2">
+       <div className="mt-4 flex items-center gap-2">
         <Link
           href={`/donation-requests/${request._id}`}
-          className="flex-1 rounded-xl bg-blue-50 py-2 text-center text-blue-600"
+          className="flex-1 flex justify-center py-3 rounded-xl bg-blue-50  text-center text-blue-600"
         >
-          View
+          <LuEye/>
         </Link>
 
         {request.requestStatus === "pending" && (
           <>
             <Link
-              href={`/dashboard/edit-request/${request._id}`}
-              className="flex-1 rounded-xl bg-green-50 py-2 text-center text-green-600">
-              Edit
+              href={`/dashboard/my-requests/edit/${request._id}`}
+              className="flex-1 flex rounded-xl bg-green-50 py-3 justify-center text-green-600"
+            >
+              <LuPencil></LuPencil>
             </Link>
 
-            <button
-              onClick={() => handleDelete(request._id)}
-              className="flex-1 rounded-xl bg-red-50 py-2 text-red-600"
+            <span
+              className="flex-1 flex justify-center rounded-xl bg-red-50 cursor-pointer text-red-600 "
             >
-              Delete
-            </button>
+                <DeleteModal request={request} handleDelete={handleDelete}></DeleteModal>
+            </span>
           </>
         )}
 
-       {request.requestStatus === "inprogress" && (
+        {request.requestStatus === "inprogress" && (
   <>
     <button
       onClick={() => handleDone(request._id)}
@@ -341,15 +331,14 @@ const handleDelete = async (id) => {
     </button>
   </>
 )}
-
-    {(request.requestStatus === "done" ||
+{(request.requestStatus === "done" ||
   request.requestStatus === "cancelled") && (
-  <button
+  <span
     onClick={() => handleDelete(request._id)}
-    className="flex-1 rounded-xl bg-red-50 py-2 text-red-600"
+    className="flex-1 flex justify-center rounded-xl bg-red-50 py-3 text-red-600"
   >
-    Delete
-  </button>
+    <LuTrash2 />
+  </span>
 )}
       </div>
     </div>

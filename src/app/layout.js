@@ -45,8 +45,10 @@ export default function RootLayout({ children }) {
         ${playfair.variable}
       `}
     >
-      <body className={`${poppins.className} min-h-screen`}>
-           {children}
+      <body className={`${poppins.className}`}>
+          <div>
+              {children}
+          </div>
         <ToastContainer></ToastContainer>
       </body>
     </html>

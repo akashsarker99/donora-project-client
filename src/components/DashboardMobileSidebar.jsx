@@ -11,8 +11,8 @@ const DashboardMobileSidebar = ({sidebarContent}) => {
   <Drawer>
     <Button
       isIconOnly
-      variant="ghost"
-      className="mr-2 text-red-600 hover:bg-red-500 hover:text-white text-5xl"
+      variant="outline"
+      className="mr-2 border-red-500 text-red-600 hover:bg-red-500 hover:text-white text-5xl"
     >
       <RiSideBarFill />
     </Button>

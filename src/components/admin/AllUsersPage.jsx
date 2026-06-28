@@ -27,6 +27,7 @@ export default function AllUsersPage({ users , pageNumber, totalPages, pages }) 
     );
   }, [users, statusFilter]);
 
+
   return (
     <section className="mx-auto max-w-7xl space-y-8">
       <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">

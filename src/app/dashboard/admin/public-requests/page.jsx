@@ -5,7 +5,6 @@ import React from 'react';
 const PublicRequestsPageAdmin = async ({searchParams}) => {
       const {page=1} = await searchParams;
     const requests = await getAllDonationRequestsByPage(page);
-    console.log(requests)
     const pageNumber = requests.pageNumber;
     const totalPages = requests.totalPages;
     const pages = [];

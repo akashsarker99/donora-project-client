@@ -1,21 +1,20 @@
 
-
 const StatsCard = ({icon: Icon, value, title, subtitle}) => {
   return (
-    <div className="rounded-[32px] border border-white/20 bg-white/10 px-9 py-5 text-center backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:bg-white/10">
-      <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-white/15">
+    <div className="rounded-3xl border border-white/10 bg-white/5 p-6 transition hover:border-red-500/40 hover:bg-white/10 text-center ease-in-out duration-300 hover:-translate-y-2">
+      <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-white/15 shadow-lg shadow-red-900/30">
         <Icon className="text-2xl text-white" />
       </div>
 
-      <h2 className="mt-3 font-logo text-2xl sm:text-3xl font-bold text-white">
+      <h2 className="mt-4 font-logo text-3xl font-bold text-white">
         {value}
       </h2>
 
-      <h3 className="mt-3 text-md sm:text-lg font-semibold text-white">
+      <h3 className="mt-3 text-lg font-semibold text-white">
         {title}
       </h3>
 
-      <p className=" text-[14px] text-red-100">
+      <p className="text-sm leading-6 text-red-100">
         {subtitle}
       </p>
     </div>

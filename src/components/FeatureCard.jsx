@@ -1,6 +1,7 @@
 'use client'
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { motion } from "motion/react"
 
 import {
   LuCalendar,
@@ -14,7 +15,16 @@ import {
 const FeaturedCard = ({ request }) => {
     const pathName = usePathname();
   return (
-    <div className="rounded-3xl border border-gray-100 border-t-6 border-t-[#c70000] bg-white p-7 shadow-sm transition hover:-translate-y-2 hover:shadow-xl">
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      whileHover={{
+        y: -7,
+        scale: 1.01,
+      }}
+      transition={{
+        duration: 0.3,
+      }}className="flex h-full flex-col rounded-3xl border border-gray-100 border-t-6 border-t-red-600 bg-white p-7 shadow-sm hover:shadow-xl hover:border-red-500/40 hover:bg-white/10 hover:border-t-[#c70000]">
 
       <div className="flex items-center justify-between">
 
@@ -59,7 +69,7 @@ const FeaturedCard = ({ request }) => {
 
       </div>
 
-      <div className="flex justify-center">
+      <div className="mt-auto">
         <Link
         href={`/donation-requests/${request._id}`}
         className="mt-8 w-full justify-center px-4 py-2 rounded-full inline-flex items-center gap-2 bg-red-50 font-semibold text-[#c70000] transition-all hover:bg-red-100 "
@@ -71,7 +81,7 @@ const FeaturedCard = ({ request }) => {
       </Link>
       </div>
 
-    </div>
+    </motion.div>
   );
 };
 
