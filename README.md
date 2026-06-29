@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Donora
 
-## Getting Started
+## Purpose
 
-First, run the development server:
+Donora is a blood donation management platform designed to make it easier for people to find blood donors, create donation requests, and support emergency blood donation efforts. The platform connects donors, volunteers, and administrators through separate dashboards while providing a simple experience for people searching for blood.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Live Website
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Client Side: https://donora-project-client.vercel.app
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Server Side: https://donora-project-server.vercel.app
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Key Features
 
-## Learn More
+* Secure authentication using Better Auth.
+* Role-based dashboards for Donors, Volunteers, and Administrators.
+* Create, update, and manage blood donation requests.
+* Search donors by blood group, district, and upazila.
+* Public donation request listing with pagination.
+* Volunteer access to manage public blood requests.
+* Admin dashboard for managing users and donation requests.
+* User blocking and role management.
+* Funding system with Stripe payment integration.
+* Responsive design that works across desktop, tablet, and mobile devices.
 
-To learn more about Next.js, take a look at the following resources:
+## Technologies Used
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Frontend
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+* Next.js
+* React
+* Tailwind CSS
+* HeroUI
+* Framer Motion
+* React Icons
+* Better Auth
+* React Hot Toast
 
-## Deploy on Vercel
+### Backend
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+* Node.js
+* Express.js
+* MongoDB
+* JOSE (JWT Verification)
+* CORS
+* Dotenv
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Payment
+
+* Stripe
+
+## NPM Packages
+
+### Frontend
+
+* next
+* react
+* @heroui/react
+* tailwindcss
+* better-auth
+* motion
+* react-icons
+* react-hot-toast
+* stripe
+* @stripe/stripe-js
+
+### Backend
+
+* express
+* mongodb
+* cors
+* dotenv
+* jose-cjs
+* stripe
+

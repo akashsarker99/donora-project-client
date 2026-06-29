@@ -140,7 +140,7 @@ const sidebarContent = (
       </nav>
     </div>
 
-    <div className="border-t border-white/10 p-4 space-y-2.5 mb-6">
+    <div className="border-t border-white/10 p-4 space-y-2.5 mb-14 md:mb-6">
         
       <div
         className=" flex items-center gap-3 rounded-2xl bg-[#730000] p-3 transition-all duration-200 hover:bg-[#850000]"

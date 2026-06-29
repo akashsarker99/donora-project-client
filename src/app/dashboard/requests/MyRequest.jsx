@@ -300,7 +300,7 @@ const handleDelete = async (id) => {
         {request.requestStatus === "pending" && (
           <>
             <Link
-              href={`/dashboard/my-requests/edit/${request._id}`}
+              href={`/dashboard/edit-request/${request._id}`}
               className="flex-1 flex rounded-xl bg-green-50 py-3 justify-center text-green-600"
             >
               <LuPencil></LuPencil>
@@ -318,27 +318,26 @@ const handleDelete = async (id) => {
   <>
     <button
       onClick={() => handleDone(request._id)}
-      className="flex-1 rounded-xl bg-green-50 py-2 text-green-600"
+      className="flex-1 rounded-xl bg-green-50 py-2 text-green-600 cursor-pointer"
     >
-      Done
+       ✓
     </button>
 
     <button
       onClick={() => handleCancel(request._id)}
-      className="flex-1 rounded-xl bg-orange-50 py-2 text-orange-600"
+      className="flex-1 rounded-xl bg-orange-50 py-3 flex justify-center cursor-pointer text-orange-600"
     >
-      Cancel
+       <LuX size={18} />
     </button>
   </>
 )}
 {(request.requestStatus === "done" ||
   request.requestStatus === "cancelled") && (
-  <span
-    onClick={() => handleDelete(request._id)}
-    className="flex-1 flex justify-center rounded-xl bg-red-50 py-3 text-red-600"
-  >
-    <LuTrash2 />
-  </span>
+     <span
+              className="flex-1 flex justify-center rounded-xl bg-red-50 cursor-pointer text-red-600 "
+            >
+                <DeleteModal request={request} handleDelete={handleDelete}></DeleteModal>
+            </span>
 )}
       </div>
     </div>
