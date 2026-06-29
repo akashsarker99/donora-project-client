@@ -28,8 +28,8 @@ const statusStyles = {
     "bg-gray-100 text-gray-600 border-gray-200",
 };
 
-const MyRequestsPage = ({requests, pageNumber, totalPages, pages}) => {
-
+const MyRequestsPage = ({requests, pageNumber, totalPages, pages, userRole}) => {
+  console.log(userRole);  
   const pathName = usePathname();
     const router = useRouter();
   const [statusFilter, setStatusFilter] = useState("all");
@@ -200,7 +200,10 @@ const handleDelete = async (id) => {
       <LuEye size={18} />
     </Link>
 
-    {request.requestStatus === "pending" && (
+    {
+      userRole.role === "volunteer" && pathName !== "/dashboard/requests" ? "" : (
+        <>
+         {request.requestStatus === "pending" && (
       <>
         <Link
           href={`/dashboard/edit-request/${request._id}`}
@@ -212,6 +215,9 @@ const handleDelete = async (id) => {
        <DeleteModal request={request} handleDelete={handleDelete}></DeleteModal>
       </>
     )}
+        </>
+      )
+    }
 
     {request.requestStatus === "inprogress" && (
       <>
@@ -231,15 +237,17 @@ const handleDelete = async (id) => {
       </>
     )}
 
-    {(request.requestStatus === "done" ||
+    {
+      userRole.role === "volunteer" && pathName !== "/dashboard/requests" ? "" : (
+        <>
+        {(request.requestStatus === "done" ||
       request.requestStatus === "cancelled") && (
-      <button
-        onClick={() => handleDelete(request._id)}
-        className="rounded-lg p-2 text-red-600 hover:bg-red-50"
-      >
-        <LuTrash2 size={18} />
-      </button>
+      <DeleteModal request={request} handleDelete={handleDelete}></DeleteModal>
     )}
+        </>
+      )
+    }
+    
   </div>
 </td>
         </tr>
@@ -297,7 +305,10 @@ const handleDelete = async (id) => {
           <LuEye/>
         </Link>
 
-        {request.requestStatus === "pending" && (
+        {
+          userRole.role === "volunteer" && pathName !== "/dashboard/requests" ? "" : (
+            <>
+              {request.requestStatus === "pending" && (
           <>
             <Link
               href={`/dashboard/edit-request/${request._id}`}
@@ -313,6 +324,12 @@ const handleDelete = async (id) => {
             </span>
           </>
         )}
+            
+            </>
+          )
+        }
+
+      
 
         {request.requestStatus === "inprogress" && (
   <>
@@ -331,7 +348,11 @@ const handleDelete = async (id) => {
     </button>
   </>
 )}
-{(request.requestStatus === "done" ||
+
+{
+  userRole.role === "volunteer" && pathName !== "/dashboard/requests" ? "" : (
+    <>
+    {(request.requestStatus === "done" ||
   request.requestStatus === "cancelled") && (
      <span
               className="flex-1 flex justify-center rounded-xl bg-red-50 cursor-pointer text-red-600 "
@@ -339,7 +360,11 @@ const handleDelete = async (id) => {
                 <DeleteModal request={request} handleDelete={handleDelete}></DeleteModal>
             </span>
 )}
-      </div>
+    
+    </>
+  )
+}
+  </div>
     </div>
   ))}
 </div>

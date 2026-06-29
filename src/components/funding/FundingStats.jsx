@@ -6,6 +6,7 @@ const FundingStats = async () => {
   const donationAmount = donations.reduce((acc, donation)=>{
     return acc + Number(donation.amount);
   },0)
+  console.log(donationAmount);
     return (
         <div className="grid gap-4 md:grid-cols-2  sm:w-1/2">
   <div className="rounded-2xl bg-white p-5 shadow-sm">

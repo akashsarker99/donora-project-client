@@ -18,7 +18,7 @@ const RequestShow = async () => {
     return (
         <div>
           
-                 <MyRequestsPage requests={request}></MyRequestsPage>
+                 <MyRequestsPage requests={request} userRole={userRole}></MyRequestsPage>
             {request.length === 0 && (
         <div className="flex min-h-[320px] flex-col items-center justify-center rounded-3xl bg-white p-6 text-center shadow-sm">
           <LuDroplets className="mb-4 text-5xl text-red-200" />
