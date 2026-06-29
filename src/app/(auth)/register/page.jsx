@@ -95,7 +95,7 @@ const districtName = districts.find(
     if(data){
       await createUser(userInfo);
       toast.success('Registration Successful');
-      router.push('/')
+      router.push('/login')
     }
     if(error){
       toast.error(`${error.message}`)

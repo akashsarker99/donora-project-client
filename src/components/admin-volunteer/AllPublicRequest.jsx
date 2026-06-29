@@ -2,14 +2,18 @@ import Link from 'next/link';
 import React from 'react';
 import { LuDroplets, LuPlus } from 'react-icons/lu';
 import MyRequestsPage from '@/app/dashboard/requests/MyRequest';
+import { getUserSession } from '@/lib/core/session';
+import { getUserByEmail } from '@/lib/api/user';
 
 
 const AllPublicRequest = async ({requests, pages, pageNumber, totalPages}) => {
+  const user = await getUserSession();
+  const userRole = await getUserByEmail(user?.email);
 
     return (
         <div>
                  <MyRequestsPage requests={requests} pageNumber={pageNumber} 
-                 totalPages={totalPages} pages={pages}></MyRequestsPage>
+                 totalPages={totalPages} pages={pages} userRole={userRole}></MyRequestsPage>
             {requests.length === 0 && (
         <div className="flex min-h-[320px] flex-col items-center justify-center rounded-3xl bg-white p-6 text-center shadow-sm">
           <LuDroplets className="mb-4 text-5xl text-red-200" />
