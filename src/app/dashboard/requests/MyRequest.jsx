@@ -52,7 +52,7 @@ const handleCancel = async (id) => {
 const handleDelete = async (id) => {
   try {
     const result = await deleteDonationRequest(id);
-    console.log(result)
+    console.log("delete",result)
     toast.success("Request deleted successfully");
     router.refresh();
     
